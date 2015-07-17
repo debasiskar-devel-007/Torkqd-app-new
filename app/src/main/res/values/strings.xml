@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Torqkd </string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="btnTakePicture" />
+    <string name="or" />
+    <string name="btnUploadToServer" />
+    <string name="btnRecordVideo" />
+    <string name="uploaded" />
+    <string name="take_photo" />
+    <string-array name="image_ids">
+        <item>@drawable/image_1</item>
+
+    </string-array>
+
+
+
+</resources>

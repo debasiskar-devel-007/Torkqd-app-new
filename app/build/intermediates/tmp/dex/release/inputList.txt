@@ -1,0 +1,7 @@
+D:\projects\Torkqd-app-master\app\build\intermediates\classes\release
+D:\projects\Torkqd-app-master\app\build\intermediates\pre-dexed\release\support-annotations-21.0.3-2c7b3f93a4765de67fc456e30fee656c798d7e65.jar
+D:\projects\Torkqd-app-master\app\build\intermediates\pre-dexed\release\httpmime-4.2.3-bdaf0873900f9fb94b9c1fb99c2d23c094ad19bd.jar
+D:\projects\Torkqd-app-master\app\build\intermediates\pre-dexed\release\internal_impl-21.0.3-4565f1fd061d0e09b97f13cf9fd7199b7845b40c.jar
+D:\projects\Torkqd-app-master\app\build\intermediates\pre-dexed\release\httpcore-4.2.2-602e633ce26f0f1cada52b89bab7c55ea075cb6e.jar
+D:\projects\Torkqd-app-master\app\build\intermediates\pre-dexed\release\classes-bf58759bbfc97c0f5e19515fe49a95a506d3df29.jar
+D:\projects\Torkqd-app-master\app\build\intermediates\pre-dexed\release\classes-9184444b62e93d8893f0b6bfb11c3cdc6f826c47.jar
