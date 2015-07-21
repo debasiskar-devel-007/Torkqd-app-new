@@ -226,13 +226,13 @@ public class cameraActivity extends Activity {
         // Filesystem.
         final Intent galleryIntent = new Intent();
         galleryIntent.setType("image/*");
-        //galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         // Chooser of filesystem options.
-        final Intent chooserIntent = captureIntent;
+        final Intent chooserIntent = Intent.createChooser(galleryIntent,"Select Source");
         // Add the camera options.
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS,	cameraIntents.toArray(new Parcelable[cameraIntents.size()]));
 
-        startActivityForResult(captureIntent, 0);
+        startActivityForResult(chooserIntent, 0);
     }
 
     private void copyFile(InputStream in, OutputStream out) throws IOException {
