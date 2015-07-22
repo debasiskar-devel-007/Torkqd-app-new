@@ -52,7 +52,7 @@ public class groupimage extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.setContentView(R.layout.choose_uploader);
+        super.setContentView(R.layout.group_choose_uploader);
 
 
         deviceId = Settings.Secure.getString(this.getContentResolver(),
@@ -210,7 +210,7 @@ public class groupimage extends Activity {
                                 Toast.LENGTH_LONG).show();*/
                         Bitmap bitmap ;
                         bitmap = BitmapFactory.decodeFile(path);
-                        //resultIAV.add(new ImageItem(bitmap,  path));
+                        resultIAV.add(new ImageItem(bitmap,  path));
 
                     }
 
@@ -241,8 +241,8 @@ public class groupimage extends Activity {
 
 
 
-    public void opencamera(View view) {
-        Intent intent = new Intent(this, cameraActivity.class);
+    public void opengcamera(View view) {
+        Intent intent = new Intent(this, groupcameraActivity.class);
 
         startActivity(intent);
     }

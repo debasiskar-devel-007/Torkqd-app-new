@@ -1419,8 +1419,10 @@ containing a value of this type.
         public static final int camera_activity=0x7f030019;
         public static final int choose_uploader=0x7f03001a;
         public static final int grid_item_layout=0x7f03001b;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
-        public static final int video_activity=0x7f03001d;
+        public static final int group_camera_activity=0x7f03001c;
+        public static final int group_choose_uploader=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
+        public static final int video_activity=0x7f03001f;
     }
     public static final class menu {
         public static final int main=0x7f0d0000;

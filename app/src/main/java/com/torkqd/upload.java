@@ -17,6 +17,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class upload extends Activity {
     private Bitmap bitmap;
     private ProgressDialog dialog;
     private String deviceId;
+    private String uploadtype;
 
 
 
@@ -59,6 +61,18 @@ public class upload extends Activity {
 
         deviceId = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
+        Intent intent = getIntent();
+        uploadtype = intent.getStringExtra("uploadtype");
+        Toast.makeText(getApplicationContext(), "image clicked "+uploadtype,
+         Toast.LENGTH_LONG).show();
+        Button playButton = (Button) findViewById(R.id.imgcancelbtn);
+        if(uploadtype=="group"){
+            Toast.makeText(getApplicationContext(), "image clicked in group ",
+                    Toast.LENGTH_LONG).show();
+            playButton.setVisibility(View.GONE);
+
+
+        }
 
 
         gridView = (GridView) findViewById(R.id.gridView);
@@ -212,7 +226,7 @@ public class upload extends Activity {
                                 Toast.LENGTH_LONG).show();*/
                         Bitmap bitmap ;
                         bitmap = BitmapFactory.decodeFile(path);
-                        //resultIAV.add(new ImageItem(bitmap,  path));
+                        resultIAV.add(new ImageItem(bitmap,  path));
 
                     }
 
@@ -245,6 +259,10 @@ public class upload extends Activity {
 
     public void opencamera(View view) {
         Intent intent = new Intent(this, cameraActivity.class);
+        if(uploadtype=="group"){
+            intent.putExtra("uploadtype", "group");
+        }
+
 
         startActivity(intent);
     }
@@ -302,14 +320,17 @@ public class upload extends Activity {
 
 
 
-
+            String uploadurl="http://torqkd.com/user/ajs/AddTempTable";
+            if(uploadtype=="group"){
+                uploadurl="http://torqkd.com/user/ajs/groupimage";
+            }
 
 
             try {
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new
                         // Here you need to put your server file address
-                        HttpPost("http://torqkd.com/user/ajs/AddTempTable");
+                        HttpPost(uploadtype);
                 // httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 httppost.setEntity(reqEntity);
                 HttpResponse response = httpclient.execute(httppost);
@@ -318,6 +339,7 @@ public class upload extends Activity {
 
                 Context context = upload.this;
                 Intent cameraintent = new Intent(context, MainActivity.class);
+
 
                 // Launch default browser
                 context.startActivity(cameraintent);

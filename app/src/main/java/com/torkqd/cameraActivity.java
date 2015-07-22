@@ -57,6 +57,7 @@ public class cameraActivity extends Activity {
     private ProgressDialog dialog;
     private String deviceId;
     private Uri fileUri;
+    private String uploadtype;
 
 
 
@@ -71,6 +72,8 @@ public class cameraActivity extends Activity {
 
         deviceId = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
+        Intent intent = getIntent();
+        uploadtype = intent.getStringExtra("uploadtype");
         //Toast.makeText(this, deviceId, Toast.LENGTH_SHORT).show();
 
 
@@ -426,7 +429,10 @@ public class cameraActivity extends Activity {
 
 
 
-
+            String uploadurl="http://torqkd.com/user/ajs/AddTempTable";
+            if(uploadtype=="group"){
+                uploadurl="http://torqkd.com/user/ajs/groupimage";
+            }
 
 
 
@@ -435,7 +441,7 @@ public class cameraActivity extends Activity {
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new
                         // Here you need to put your server file address
-                        HttpPost("http://torqkd.com/user/ajs/AddTempTable");
+                        HttpPost(uploadurl);
                 // httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 httppost.setEntity(reqEntity);
                 HttpResponse response = httpclient.execute(httppost);

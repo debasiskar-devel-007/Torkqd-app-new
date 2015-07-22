@@ -26,6 +26,25 @@ public class WebViewController extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
+
+
+        if(url.contains("http://torqkd.com/uploa-dgroup"))
+        {
+
+            Context context = view.getContext();
+
+            Intent cameraintent = new Intent(context, upload.class);
+            cameraintent.putExtra("uploadtype", "group");
+            context.startActivity(cameraintent);
+
+
+            return true ;
+
+
+
+
+        }
+
         if(url.contains("http://torqkd.com/upload"))
         {
 
@@ -63,20 +82,7 @@ public class WebViewController extends WebViewClient {
 
 
 
-        if(url.contains("http://torqkd.com/uploadgroup"))
-        {
 
-            Context context = view.getContext();
-            Intent cameraintent = new Intent(context, groupimage.class);
-            context.startActivity(cameraintent);
-
-
-            return true ;
-
-
-
-
-        }
         if(url.contains("http://torqkd.com/torqkd_demo/"))
         {
 
