@@ -402,6 +402,7 @@ public class videoActivity extends Activity {
             vidPreview.setVideoPath(fileuri);
             // start playing
             vidPreview.start();
+            upload.performClick();
             //upLoad2Server(fileuri);
            /* Toast.makeText(getApplicationContext(), fileuri,
                     Toast.LENGTH_LONG).show();*/

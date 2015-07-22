@@ -231,8 +231,10 @@ public class cameraActivity extends Activity {
         final Intent chooserIntent = Intent.createChooser(galleryIntent,"Select Source");
         // Add the camera options.
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS,	cameraIntents.toArray(new Parcelable[cameraIntents.size()]));
+        captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
 
-        startActivityForResult(chooserIntent, 0);
+
+        startActivityForResult(captureIntent, 0);
     }
 
     private void copyFile(InputStream in, OutputStream out) throws IOException {
@@ -384,6 +386,7 @@ public class cameraActivity extends Activity {
 
 
         imgView.setImageBitmap(bitmap);
+        upload.performClick();
 
     }
 
