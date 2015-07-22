@@ -12,6 +12,7 @@ import android.media.ThumbnailUtils;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.MediaStore.Video.Thumbnails;
 import android.provider.Settings;
 import android.util.Base64;
 import android.util.Log;
@@ -35,13 +36,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import android.provider.MediaStore.Video.Thumbnails;
 //import org.apache.http.entity.mime.MultipartEntity;
 
 
-
-
-public class upload extends Activity {
+public class groupimage extends Activity {
     private GridView gridView;
     private GridViewAdapter gridAdapter;
     private Bitmap bitmap;
@@ -74,7 +72,7 @@ public class upload extends Activity {
                 // Toast.LENGTH_LONG).show();
                 decodeFile(item.getTitle());
 
-                dialog = ProgressDialog.show(upload.this,
+                dialog = ProgressDialog.show(groupimage.this,
                         "Uploading", "Please wait...", true);
                 new ImageUploadTask().execute();
 
@@ -309,14 +307,14 @@ public class upload extends Activity {
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new
                         // Here you need to put your server file address
-                        HttpPost("http://torqkd.com/user/ajs/AddTempTable");
+                        HttpPost("http://torqkd.com/user/ajs/groupimage");
                 // httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 httppost.setEntity(reqEntity);
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 is = entity.getContent();
 
-                Context context = upload.this;
+                Context context = groupimage.this;
                 Intent cameraintent = new Intent(context, MainActivity.class);
 
                 // Launch default browser

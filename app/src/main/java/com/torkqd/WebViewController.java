@@ -60,6 +60,23 @@ public class WebViewController extends WebViewClient {
 
 
         }
+
+
+
+        if(url.contains("http://torqkd.com/uploadgroup"))
+        {
+
+            Context context = view.getContext();
+            Intent cameraintent = new Intent(context, groupimage.class);
+            context.startActivity(cameraintent);
+
+
+            return true ;
+
+
+
+
+        }
         if(url.contains("http://torqkd.com/torqkd_demo/"))
         {
 

@@ -64,14 +64,7 @@
                 android:layout_gravity="bottom|center"
                 android:text="Take A Picture " />
 
-            <Button
-                android:id="@+id/imgcancelbtn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dip"
-                android:onClick="openvideo"
-                android:layout_gravity="bottom|center"
-                android:text="Take A Video" />
+
         </TableRow>
     </TableLayout>
 
