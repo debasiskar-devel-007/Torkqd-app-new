@@ -50,7 +50,9 @@
         android:orientation="horizontal"
         android:stretchColumns="*" >
 
-        <TableRow>
+        <TableRow
+            android:layout_gravity="center"
+            android:gravity="center">
 
 
 

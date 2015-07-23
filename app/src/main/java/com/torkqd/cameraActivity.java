@@ -74,6 +74,7 @@ public class cameraActivity extends Activity {
                 Settings.Secure.ANDROID_ID);
         Intent intent = getIntent();
         uploadtype = intent.getStringExtra("uploadtype");
+        uploadtype=uploadtype.valueOf(uploadtype);
         //Toast.makeText(this, deviceId, Toast.LENGTH_SHORT).show();
 
 
@@ -430,7 +431,7 @@ public class cameraActivity extends Activity {
 
 
             String uploadurl="http://torqkd.com/user/ajs/AddTempTable";
-            if(uploadtype=="group"){
+            if(uploadtype.matches("group")){
                 uploadurl="http://torqkd.com/user/ajs/groupimage";
             }
 

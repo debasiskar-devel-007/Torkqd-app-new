@@ -62,11 +62,12 @@ public class upload extends Activity {
         deviceId = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
         Intent intent = getIntent();
-        uploadtype = intent.getStringExtra("uploadtype");
+        uploadtype =  intent.getStringExtra("uploadtype");
+        uploadtype=uploadtype.valueOf(uploadtype);
         Toast.makeText(getApplicationContext(), "image clicked "+uploadtype,
          Toast.LENGTH_LONG).show();
         Button playButton = (Button) findViewById(R.id.imgcancelbtn);
-        if(uploadtype=="group"){
+        if(uploadtype.matches("group")){
             Toast.makeText(getApplicationContext(), "image clicked in group ",
                     Toast.LENGTH_LONG).show();
             playButton.setVisibility(View.GONE);
@@ -259,7 +260,7 @@ public class upload extends Activity {
 
     public void opencamera(View view) {
         Intent intent = new Intent(this, cameraActivity.class);
-        if(uploadtype=="group"){
+        if(uploadtype.matches("group")){
             intent.putExtra("uploadtype", "group");
         }
 
@@ -321,7 +322,7 @@ public class upload extends Activity {
 
 
             String uploadurl="http://torqkd.com/user/ajs/AddTempTable";
-            if(uploadtype=="group"){
+            if(uploadtype.matches("group")){
                 uploadurl="http://torqkd.com/user/ajs/groupimage";
             }
 
@@ -330,7 +331,7 @@ public class upload extends Activity {
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new
                         // Here you need to put your server file address
-                        HttpPost(uploadtype);
+                        HttpPost(uploadurl);
                 // httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 httppost.setEntity(reqEntity);
                 HttpResponse response = httpclient.execute(httppost);
