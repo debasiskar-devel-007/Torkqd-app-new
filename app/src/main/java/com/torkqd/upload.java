@@ -68,8 +68,23 @@ public class upload extends Activity {
          Toast.LENGTH_LONG).show();
         Button playButton = (Button) findViewById(R.id.imgcancelbtn);
         if(uploadtype.matches("group")){
-            Toast.makeText(getApplicationContext(), "image clicked in group ",
-                    Toast.LENGTH_LONG).show();
+            /*Toast.makeText(getApplicationContext(), "image clicked in group ",
+                    Toast.LENGTH_LONG).show();*/
+            playButton.setVisibility(View.GONE);
+
+
+        }
+
+        if(uploadtype.matches("editp")){
+           /* Toast.makeText(getApplicationContext(), "image clicked in group ",
+                    Toast.LENGTH_LONG).show();*/
+            playButton.setVisibility(View.GONE);
+
+
+        }
+        if(uploadtype.matches("editpb")){
+           /* Toast.makeText(getApplicationContext(), "image clicked in group ",
+                    Toast.LENGTH_LONG).show();*/
             playButton.setVisibility(View.GONE);
 
 
@@ -263,6 +278,13 @@ public class upload extends Activity {
         if(uploadtype.matches("group")){
             intent.putExtra("uploadtype", "group");
         }
+        if(uploadtype.matches("editp")){
+            intent.putExtra("uploadtype", "editp");
+        }
+
+        if(uploadtype.matches("editpb")){
+            intent.putExtra("uploadtype", "editpb");
+        }
 
 
         startActivity(intent);
@@ -324,6 +346,12 @@ public class upload extends Activity {
             String uploadurl="http://torqkd.com/user/ajs/AddTempTable";
             if(uploadtype.matches("group")){
                 uploadurl="http://torqkd.com/user/ajs/groupimage";
+            }
+            if(uploadtype.matches("editp")){
+                uploadurl="http://torqkd.com/user/ajs/profileimage";
+            }
+            if(uploadtype.matches("editpb")){
+                uploadurl="http://torqkd.com/user/ajs/profileimagebg";
             }
 
 

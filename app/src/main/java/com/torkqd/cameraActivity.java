@@ -434,6 +434,14 @@ public class cameraActivity extends Activity {
             if(uploadtype.matches("group")){
                 uploadurl="http://torqkd.com/user/ajs/groupimage";
             }
+            if(uploadtype.matches("editp")){
+                uploadurl="http://torqkd.com/user/ajs/profileimage";
+            }
+
+            if(uploadtype.matches("editpb")){
+                uploadurl="http://torqkd.com/user/ajs/profileimagebg";
+            }
+
 
 
 

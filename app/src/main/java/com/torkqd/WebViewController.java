@@ -28,7 +28,7 @@ public class WebViewController extends WebViewClient {
 
 
 
-        if(url.contains("http://torqkd.com/uploa-dgroup"))
+        if(url.matches("http://torqkd.com/uploa-dgroup"))
         {
 
             Context context = view.getContext();
@@ -45,7 +45,41 @@ public class WebViewController extends WebViewClient {
 
         }
 
-        if(url.contains("http://torqkd.com/upload"))
+        if(url.matches("http://torqkd.com/editprofileupload"))
+        {
+
+            Context context = view.getContext();
+
+            Intent cameraintent = new Intent(context, upload.class);
+            cameraintent.putExtra("uploadtype", "editp");
+            context.startActivity(cameraintent);
+
+
+            return true ;
+
+
+
+
+        }
+
+        if(url.matches("http://torqkd.com/editprofilebupload"))
+        {
+
+            Context context = view.getContext();
+
+            Intent cameraintent = new Intent(context, upload.class);
+            cameraintent.putExtra("uploadtype", "editpb");
+            context.startActivity(cameraintent);
+
+
+            return true ;
+
+
+
+
+        }
+
+        if(url.matches("http://torqkd.com/upload"))
         {
 
             /*myWebView = (WebView) view.findViewById(R.id.webView1);
@@ -83,7 +117,15 @@ public class WebViewController extends WebViewClient {
 
 
 
-        if(url.contains("http://torqkd.com/torqkd_demo/"))
+        if(url.contains("http://torqkd.com/torqkd_demo/")
+                ||url.contains("http://torqkd.com/user/default/mobilecrop")
+                || url.contains("http://torqkd.com/user/default/mobilecrop1")
+                || url.contains("http://torqkd.com/user/default/mobilecropsign1")
+                || url.contains("http://torqkd.com/user/default/mobilecropsign")
+
+                || url.contains("http://torqkd.com/user/profile/autoImgUp/")
+
+                )
         {
 
 
@@ -97,8 +139,7 @@ public class WebViewController extends WebViewClient {
                     || url.contains("http://torqkd.com/user/profile/twittershare2/")
                     || url.contains("http://192.168.0.131/torqkd/user/profile/autoImgUp1/")
                     || url.contains("fbgetAT")
-
-                    || url.contains("http://torqkd.com/user/profile/autoImgUp/"))
+                    )
             {
                 Context context = view.getContext();
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
