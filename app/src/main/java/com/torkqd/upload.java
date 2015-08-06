@@ -179,7 +179,7 @@ public class upload extends Activity {
 
 
         //Uri u = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;;
-        String[] projection = {MediaStore.Images.ImageColumns.DATA};
+        String[] projection = {MediaStore.Images.Thumbnails.DATA};
         Cursor c = null;
         Context context;
         SortedSet<String> dirList = new TreeSet<>();

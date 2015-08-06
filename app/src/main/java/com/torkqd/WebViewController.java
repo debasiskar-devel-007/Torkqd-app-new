@@ -28,7 +28,7 @@ public class WebViewController extends WebViewClient {
 
 
 
-        if(url.matches("http://torqkd.com/uploa-dgroup"))
+        if(url.contains("http://torqkd.com/uploa-dgroup"))
         {
 
             Context context = view.getContext();
@@ -79,7 +79,7 @@ public class WebViewController extends WebViewClient {
 
         }
 
-        if(url.matches("http://torqkd.com/upload"))
+        if(url.contains("http://torqkd.com/upload"))
         {
 
             /*myWebView = (WebView) view.findViewById(R.id.webView1);
@@ -173,13 +173,13 @@ public class WebViewController extends WebViewClient {
             Context context = view.getContext();
             progressDialog = new ProgressDialog(context);
             progressDialog.setMessage("Loading...");
-            progressDialog.show();
+            //progressDialog.show();
         }
     }
     public void onPageFinished(WebView view, String url) {
         try{
             if (progressDialog.isShowing()) {
-                progressDialog.dismiss();
+               // progressDialog.dismiss();
                 progressDialog = null;
             }
         }catch(Exception exception){

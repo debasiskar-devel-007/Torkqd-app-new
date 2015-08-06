@@ -27,6 +27,8 @@ import java.lang.reflect.Method;
 public class MainActivity extends Activity implements LocationListener {
 
 	private WebView myWebView;
+    private LocationManager mLocMgr;
+    LocationManager locationManager;
 
 	private ValueCallback<Uri> mUploadMessage;
 	private final static int FILECHOOSER_RESULTCODE = 1;
@@ -128,7 +130,7 @@ public class MainActivity extends Activity implements LocationListener {
             }
         });*/
 
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         // Creating a criteria object to retrieve provider
         Criteria criteria = new Criteria();
@@ -222,6 +224,33 @@ public class MainActivity extends Activity implements LocationListener {
 
         // Setting latitude and longitude in the TextView tv_location
         //tvLocation.setText("Latitude:" +  latitude  + ", Longitude:"+ longitude );
+
+    }
+
+    public void onPause(){
+
+        super.onPause();
+        locationManager.removeUpdates(this);
+        locationManager = null;
+    }
+    public  void onResume(){
+        super.onResume();
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        // Creating a criteria object to retrieve provider
+        Criteria criteria = new Criteria();
+
+        // Getting the name of the best provider
+        String provider = locationManager.getBestProvider(criteria, true);
+
+        // Getting Current Location
+        Location location = locationManager.getLastKnownLocation(provider);
+
+        if(location!=null){
+            onLocationChanged(location);
+        }
+
+        locationManager.requestLocationUpdates(provider,1000,0, this);
 
     }
 
@@ -437,6 +466,8 @@ public class MainActivity extends Activity implements LocationListener {
             exception.printStackTrace();
         }
     }
+
+
 
 
 
