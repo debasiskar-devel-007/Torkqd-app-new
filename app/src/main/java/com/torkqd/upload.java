@@ -9,29 +9,41 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.SortedSet;
@@ -49,6 +61,22 @@ public class upload extends Activity {
     private ProgressDialog dialog;
     private String deviceId;
     private String uploadtype;
+
+
+    private Cursor videoCursor;
+    private Cursor imageCursor;
+    private int videoColumnIndex;
+    private int imageColumnIndex;
+    ListView videolist;
+    ListView imagelist;
+    int count;
+    int counti;
+    String thumbPath;
+    //private ProgressDialog dialog;
+    //private String deviceId;
+    String fileuri=null;
+
+    String[] thumbColumns = { MediaStore.Video.Thumbnails.DATA,MediaStore.Video.Thumbnails.VIDEO_ID };
 
 
 
@@ -398,6 +426,22 @@ public class upload extends Activity {
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

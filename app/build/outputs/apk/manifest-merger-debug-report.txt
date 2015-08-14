@@ -18,6 +18,10 @@ ADDED from AndroidManifest.xml:7:5
 MERGED from com.android.support:appcompat-v7:21.0.3:15:5
 MERGED from com.android.support:support-v4:21.0.3:15:5
 MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.astuetz:pagerslidingtabstrip:1.0.1:2:5
+MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.facebook.android:facebook-android-sdk:4.1.0:24:5
+MERGED from com.android.support:support-v4:21.0.3:15:5
 	android:targetSdkVersion
 		ADDED from AndroidManifest.xml:9:9
 		INJECTED from AndroidManifest.xml:0:0
@@ -83,6 +87,10 @@ ADDED from AndroidManifest.xml:35:5
 MERGED from com.android.support:appcompat-v7:21.0.3:16:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
+MERGED from com.astuetz:pagerslidingtabstrip:1.0.1:4:5
+MERGED from com.android.support:support-v4:21.0.3:16:5
+MERGED from com.facebook.android:facebook-android-sdk:4.1.0:28:5
+MERGED from com.android.support:support-v4:21.0.3:16:5
 	android:label
 		ADDED from AndroidManifest.xml:38:9
 	android:allowBackup
@@ -143,3 +151,51 @@ activity#com.torkqd.videoActivity
 ADDED from AndroidManifest.xml:71:9
 	android:name
 		ADDED from AndroidManifest.xml:72:13
+activity#com.torkqd.HelloFacebookSampleActivity
+ADDED from AndroidManifest.xml:76:9
+	android:label
+		ADDED from AndroidManifest.xml:77:13
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:78:13
+	android:name
+		ADDED from AndroidManifest.xml:76:19
+activity#com.facebook.FacebookActivity
+ADDED from AndroidManifest.xml:83:9
+	android:label
+		ADDED from AndroidManifest.xml:86:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:84:13
+	android:theme
+		ADDED from AndroidManifest.xml:85:13
+	android:name
+		ADDED from AndroidManifest.xml:83:19
+meta-data#com.facebook.sdk.ApplicationId
+ADDED from AndroidManifest.xml:87:9
+	android:value
+		ADDED from AndroidManifest.xml:87:66
+	android:name
+		ADDED from AndroidManifest.xml:87:20
+meta-data#com.facebook.sdk.ApplicationName
+ADDED from AndroidManifest.xml:88:9
+	android:value
+		ADDED from AndroidManifest.xml:89:13
+	android:name
+		ADDED from AndroidManifest.xml:88:20
+provider#com.facebook.FacebookContentProvider
+ADDED from AndroidManifest.xml:90:9
+	android:authorities
+		ADDED from AndroidManifest.xml:90:19
+	android:exported
+		ADDED from AndroidManifest.xml:92:13
+	android:name
+		ADDED from AndroidManifest.xml:91:13
+receiver#com.torkqd.HelloFacebookBroadcastReceiver
+ADDED from AndroidManifest.xml:93:9
+	android:name
+		ADDED from AndroidManifest.xml:93:19
+intent-filter#com.facebook.platform.AppCallResultBroadcast
+ADDED from AndroidManifest.xml:94:13
+action#com.facebook.platform.AppCallResultBroadcast
+ADDED from AndroidManifest.xml:95:17
+	android:name
+		ADDED from AndroidManifest.xml:95:25

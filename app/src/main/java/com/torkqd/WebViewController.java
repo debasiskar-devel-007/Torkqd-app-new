@@ -62,6 +62,26 @@ public class WebViewController extends WebViewClient {
 
         }
 
+
+
+        if(url.matches("http://torqkd.com/fbgetAccessToken"))
+        {
+
+            Context context = view.getContext();
+
+            Intent cameraintent = new Intent(context, HelloFacebookSampleActivity.class);
+            //cameraintent.putExtra("uploadtype", "editp");
+            context.startActivity(cameraintent);
+
+
+            return true ;
+
+
+
+
+        }
+
+
         if(url.matches("http://torqkd.com/editprofilebupload"))
         {
 
@@ -69,6 +89,23 @@ public class WebViewController extends WebViewClient {
 
             Intent cameraintent = new Intent(context, upload.class);
             cameraintent.putExtra("uploadtype", "editpb");
+            context.startActivity(cameraintent);
+
+
+            return true ;
+
+
+
+
+        }
+
+        if(url.contains("http://torqkd.com/videoupload"))
+        {
+
+            Context context = view.getContext();
+
+            Intent cameraintent = new Intent(context, videolist.class);
+            //cameraintent.putExtra("uploadtype", "editpb");
             context.startActivity(cameraintent);
 
 

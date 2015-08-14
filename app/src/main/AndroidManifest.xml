@@ -71,6 +71,32 @@
         <activity
             android:name=".videoActivity" >
         </activity>
+
+        <activity
+            android:name=".videolist" >
+        </activity>
+
+
+        <activity android:name="com.torkqd.HelloFacebookSampleActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationName"
+            android:value="@string/facebook_app_name" />
+
+
+
+
     </application>
+
+
+
 
 </manifest>
