@@ -26,16 +26,31 @@ import java.lang.reflect.Method;
 
 public class MainActivity extends Activity implements LocationListener {
 
-	private WebView myWebView;
-    private LocationManager mLocMgr;
+    private final static int FILECHOOSER_RESULTCODE = 1;
+    private final static int GPS_RESULTCODE = 0;
     LocationManager locationManager;
-
-	private ValueCallback<Uri> mUploadMessage;
-	private final static int FILECHOOSER_RESULTCODE = 1;
-	private final static int GPS_RESULTCODE = 0;
-    private Button btn1;
     ProgressDialog progressDialog;
+    double latitude;
+    double longitude;
+    private WebView myWebView;
+    private LocationManager mLocMgr;
+    private ValueCallback<Uri> mUploadMessage;
+    private Button btn1;
     private String deviceId;
+    private String vlocalfileuril;
+
+    private final static Object methodInvoke(Object obj, String method,
+                                             Class<?>[] parameterTypes, Object[] args) {
+        try {
+            Method m = obj.getClass().getMethod(method,
+                    new Class[]{boolean.class});
+            m.invoke(obj, args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +64,12 @@ public class MainActivity extends Activity implements LocationListener {
         myWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
 
 
-
-
-
-
-
-
-
+        vlocalfileuril = null;
+        Intent intent = getIntent();
+        vlocalfileuril = intent.getStringExtra("vlocalfileuril");
+        vlocalfileuril = vlocalfileuril.valueOf(vlocalfileuril);
+       /* Toast.makeText(getApplicationContext(), "vfile uploaded " + vlocalfileuril,
+                Toast.LENGTH_LONG).show();*/
 
 
         deviceId = Settings.Secure.getString(this.getContentResolver(),
@@ -145,7 +159,18 @@ public class MainActivity extends Activity implements LocationListener {
             onLocationChanged(location);
         }
 
-        locationManager.requestLocationUpdates(provider,1000,0, this);
+       /* locationManager.requestLocationUpdates(provider,1000,0, this);
+         latitude = location.getLatitude();
+
+        // Getting longitude of the current location
+         longitude = location.getLongitude();
+
+
+
+        myWebView.loadUrl("javascript:setValue(" + latitude + ")");
+        myWebView.loadUrl("javascript:setValuelong("+longitude+")");
+
+        myWebView.loadUrl("javascript:add_userdevice_with_session('"+deviceId +"')");*/
 
 
 
@@ -159,23 +184,21 @@ public class MainActivity extends Activity implements LocationListener {
 		}
 	}
 
-
     public void sendMessage(View view) {
         Intent intent = new Intent(this, cameraActivity.class);
 
         startActivity(intent);
     }
 
-
     public void onLocationChanged(Location location) {
 
         //TextView tvLocation = (TextView) findViewById(R.id.tv_location);
 
         // Getting latitude of the current location
-        double latitude = location.getLatitude();
+        latitude = location.getLatitude();
 
         // Getting longitude of the current location
-        double longitude = location.getLongitude();
+        longitude = location.getLongitude();
 
         deviceId = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
@@ -230,9 +253,10 @@ public class MainActivity extends Activity implements LocationListener {
     public void onPause(){
 
         super.onPause();
-        locationManager.removeUpdates(this);
-        locationManager = null;
+        //locationManager.removeUpdates(this);
+        //locationManager = null;
     }
+
     public  void onResume(){
         super.onResume();
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -293,8 +317,8 @@ public class MainActivity extends Activity implements LocationListener {
         });
 
 		myWebView.loadUrl("http://torqkd.com/torqkd_demo/#/");
-		
-		 // settings.setPluginsEnabled(true);
+
+        // settings.setPluginsEnabled(true);
         methodInvoke(myWebView.getSettings(), "setPluginsEnabled", new Class[] { boolean.class }, new Object[] { true });
         // settings.setPluginState(PluginState.ON);
         methodInvoke(myWebView.getSettings(), "setPluginState", new Class[] { PluginState.class }, new Object[] { PluginState.ON });
@@ -412,22 +436,6 @@ public class MainActivity extends Activity implements LocationListener {
 		// system behavior (probably exit the activity)
 		return super.onKeyDown(keyCode, event);
 	}
-
-	private final static Object methodInvoke(Object obj, String method,
-			Class<?>[] parameterTypes, Object[] args) {
-		try {
-			Method m = obj.getClass().getMethod(method,
-					new Class[] { boolean.class });
-			m.invoke(obj, args);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
-
-
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {

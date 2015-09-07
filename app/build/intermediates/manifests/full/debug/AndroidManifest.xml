@@ -57,6 +57,9 @@
         </activity>
         <activity android:name="com.torkqd.videoActivity" >
         </activity>
+        <activity android:name="com.torkqd.videolist" />
+        <activity android:name="com.torkqd.videoplayerActivity" >
+        </activity>
         <activity
             android:name="com.torkqd.HelloFacebookSampleActivity"
             android:label="@string/app_name"
@@ -70,21 +73,10 @@
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="434078603403320" />
+            android:value="@string/app_id" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationName"
             android:value="@string/facebook_app_name" />
-
-        <provider
-            android:name="com.facebook.FacebookContentProvider"
-            android:authorities="com.facebook.app.FacebookContentProvider434078603403320"
-            android:exported="true" />
-
-        <receiver android:name="com.torkqd.HelloFacebookBroadcastReceiver" >
-            <intent-filter>
-                <action android:name="com.facebook.platform.AppCallResultBroadcast" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

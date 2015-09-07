@@ -10,11 +10,13 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Base64;
@@ -62,6 +64,10 @@ import java.util.List;
 
 public class videoActivity extends Activity {
 
+    public static final int MEDIA_TYPE_VIDEO = 2;
+    private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
+    public static videoActivity ActivityContext = null;
+    String fileuri = null;
     private Uri outputFileUri;
     private ImageView imgView;
     private Button upload, cancel;
@@ -70,13 +76,6 @@ public class videoActivity extends Activity {
     private String deviceId;
     private VideoView vidPreview;
     private Uri fileUri;
-
-
-
-    public static final int MEDIA_TYPE_VIDEO = 2;
-    private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
-    public static videoActivity ActivityContext =null;
-    String fileuri=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,8 +111,15 @@ public class videoActivity extends Activity {
                 }
                 else {
                     dialog = ProgressDialog.show(videoActivity.this,
-                            "Uploading", "Please wait...", true);
+                            "Uploading", "Please wait , It may take few minutes ...", true);
                     new VideoUploadTask().execute();
+
+                    SystemClock.sleep(1000);
+
+
+                    new VideoUploadTaskupdatelocation().execute();
+                    new VideoUploadTaskfull().execute();
+
 
                 }
 
@@ -139,82 +145,6 @@ public class videoActivity extends Activity {
 
     }
 
-
-
-
-    class VideoUploadTask extends AsyncTask<Void, Void, String> {
-        @SuppressWarnings("unused")
-        @Override
-        protected String doInBackground(Void... unsued) {
-
-            MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
-
-            /*reqEntity.addPart("myFile",
-                    deviceId+ ".jpg", is);*/
-            File sourceFile = new File(fileuri);
-
-            // Adding file data to http body
-            reqEntity.addPart("image", new FileBody(sourceFile));
-            try {
-                reqEntity.addPart("name", new StringBody(deviceId));
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
-            //FileBody bin = new FileBody(new File("C:/ABC.txt"));
-
-
-
-
-
-
-
-
-            try {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new
-                        // Here you need to put your server file address
-                        HttpPost("http://torqkd.com/user/ajs/uploadvideo");
-                // httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                httppost.setEntity(reqEntity);
-                HttpResponse response = httpclient.execute(httppost);
-                //HttpEntity entity = response.getEntity();
-                //is = entity.getContent();
-
-                Context context = videoActivity.this;
-                Intent cameraintent = new Intent(context, MainActivity.class);
-
-                // Launch default browser
-                context.startActivity(cameraintent);
-                Log.v("log_tag", "In the try Loop");
-            } catch (Exception e) {
-                Log.v("log_tag", "Error in http connection " + e.toString());
-            }
-            return "Success";
-            // (null);
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... unused) {
-
-        }
-
-        @Override
-        protected void onPostExecute(String sResponse) {
-            try {
-                if (dialog.isShowing())
-                    dialog.dismiss();
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), e.getMessage(),
-                        Toast.LENGTH_LONG).show();
-                Log.e(e.getClass().getName(), e.getMessage(), e);
-            }
-        }
-
-    }
-
-
-
     private void uploadVideo(String videoPath) throws ParseException, IOException {
 
         HttpClient httpclient = new DefaultHttpClient();
@@ -231,27 +161,24 @@ public class videoActivity extends Activity {
         httppost.setEntity(reqEntity);
 
         // DEBUG
-        System.out.println( "executing request " + httppost.getRequestLine( ) );
-        HttpResponse response = httpclient.execute( httppost );
-        HttpEntity resEntity = response.getEntity( );
+        System.out.println("executing request " + httppost.getRequestLine());
+        HttpResponse response = httpclient.execute(httppost);
+        HttpEntity resEntity = response.getEntity();
 
         // DEBUG
         System.out.println(response.getStatusLine());
         if (resEntity != null) {
-            System.out.println( EntityUtils.toString(resEntity) );
+            System.out.println(EntityUtils.toString(resEntity));
         } // end if
 
         if (resEntity != null) {
-            resEntity.consumeContent( );
+            resEntity.consumeContent();
         } // end if
 
-        httpclient.getConnectionManager( ).shutdown();
+        httpclient.getConnectionManager().shutdown();
     } // end of uploadVideo( )
 
-
-
-
-    private void openVideointent(){
+    private void openVideointent() {
         Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 
         // create a file to save the video
@@ -269,10 +196,6 @@ public class videoActivity extends Activity {
         // start the Video Capture Intent
         startActivityForResult(intent, CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
     }
-
-
-
-
 
     private Uri getOutputMediaFileUri(int type){
 
@@ -335,11 +258,6 @@ public class videoActivity extends Activity {
         return mediaFile;
     }
 
-
-
-
-
-
     private void openImageIntent() {
 
         // Determine Uri of camera image to save.
@@ -385,6 +303,7 @@ public class videoActivity extends Activity {
             out.write(buffer, 0, read);
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Uri selectedImageUri = null;
@@ -457,9 +376,7 @@ public class videoActivity extends Activity {
                 }
                 Log.e("selectedImageUri", selectedImageUri.toString());
             }
-        }
-        else
-        {
+        } else {
 
             //upLoad2Server(fileuri);
             //return;
@@ -484,8 +401,6 @@ public class videoActivity extends Activity {
                         Toast.LENGTH_LONG).show();*/
 
 
-
-
                 if (selectedImagePath != null) {
                     filePath = selectedImagePath;
                 } else if (filemanagerstring != null) {
@@ -508,24 +423,6 @@ public class videoActivity extends Activity {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void upLoad2Server(String sourceFileUri) {
         String upLoadServerUri = "http://torqkd.com/user/ajs/uploadvideo";
@@ -567,7 +464,7 @@ public class videoActivity extends Activity {
             dos = new DataOutputStream(conn.getOutputStream());
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";filename=\""+ fileName + "\"" + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";filename=\"" + fileName + "\"" + lineEnd);
             dos.writeBytes(lineEnd);
 
             bytesAvailable = fileInputStream.available(); // create a buffer of  maximum size
@@ -618,23 +515,12 @@ public class videoActivity extends Activity {
         } catch (IOException ioex) {
             Log.e("Huzza", "error: " + ioex.getMessage(), ioex);
         }
-       // return serverResponseCode;  // like 200 (Ok)
+        // return serverResponseCode;  // like 200 (Ok)
 
     } // end upLoad2Server
 
-
-
-
-
-
-
-
-
-
-
-
     public String getPath(Uri uri) {
-        String[] projection = { MediaStore.Images.Media.DATA };
+        String[] projection = {MediaStore.Images.Media.DATA};
         Cursor cursor = managedQuery(uri, projection, null, null, null);
         if (cursor != null) {
             // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
@@ -675,9 +561,305 @@ public class videoActivity extends Activity {
                 Toast.LENGTH_LONG).show();
 
 
-
-
         imgView.setImageBitmap(bitmap);
+
+    }
+
+    class VideoUploadTaskfull extends AsyncTask<Void, Void, String> {
+        @SuppressWarnings("unused")
+        @Override
+        protected String doInBackground(Void... unsued) {
+
+            try {
+                AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
+                        new AndroidMultiPartEntity.ProgressListener() {
+
+                            @Override
+                            public void transferred(long num) {
+                                // publishProgress((int) ((num / (float) totalSize) * 100));
+                            }
+                        });
+
+
+                File sourceFile = new File(fileuri);
+
+
+                // Adding file data to http body
+                entity.addPart("videofile", new FileBody(sourceFile));
+                String base = Environment.getExternalStorageDirectory().getAbsolutePath().toString();
+
+                try {
+                    entity.addPart("basepath", new StringBody(base));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    entity.addPart("localfilepath", new StringBody(fileuri));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    entity.addPart("name", new StringBody(deviceId));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                //FileBody bin = new FileBody(new File("C:/ABC.txt"));
+
+
+                try {
+                    HttpClient httpclient = new DefaultHttpClient();
+                    HttpPost httppost = new
+                            // Here you need to put your server file address
+                            HttpPost("http://torqkd.com/user/ajs/uploadvideoupdate");
+                    // httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                    httppost.setEntity(entity);
+                    HttpResponse response = httpclient.execute(httppost);
+                    //HttpEntity entity = response.getEntity();
+                    //is = entity.getContent();
+
+                    //Context context = videoActivity.this;
+                    //Intent cameraintent = new Intent(context, MainActivity.class);
+
+                    // Launch default browser
+                    // context.startActivity(cameraintent);
+                    Log.v("log_tag", "In the try Loop");
+                } catch (Exception e) {
+                    Log.v("log_tag", "Error in http connection " + e.toString());
+                }
+
+
+            } catch (Exception e) {
+                Log.v("log_tag", "Error in http connection " + e.toString());
+            }
+
+            return "Success";
+            // (null);
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... unused) {
+
+        }
+
+        @Override
+        protected void onPostExecute(String sResponse) {
+            try {
+                if (dialog.isShowing())
+                    dialog.dismiss();
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), e.getMessage(),
+                        Toast.LENGTH_LONG).show();
+                Log.e(e.getClass().getName(), e.getMessage(), e);
+            }
+        }
+
+    }
+
+
+    class VideoUploadTaskupdatelocation extends AsyncTask<Void, Void, String> {
+        @SuppressWarnings("unused")
+        @Override
+        protected String doInBackground(Void... unsued) {
+
+            SystemClock.sleep(2000);
+
+            try {
+                AndroidMultiPartEntity entityl = new AndroidMultiPartEntity(
+                        new AndroidMultiPartEntity.ProgressListener() {
+
+                            @Override
+                            public void transferred(long num) {
+                                // publishProgress((int) ((num / (float) totalSize) * 100));
+                            }
+                        });
+
+/*
+                File sourceFile = new File(fileuri);
+
+
+                // Adding file data to http body
+                entity.addPart("videofile", new FileBody(sourceFile));*/
+                String base = Environment.getExternalStorageDirectory().getAbsolutePath().toString();
+
+                try {
+                    entityl.addPart("basepath", new StringBody(base));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    entityl.addPart("localfilepath", new StringBody(fileuri));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    entityl.addPart("name", new StringBody(deviceId));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                //FileBody bin = new FileBody(new File("C:/ABC.txt"));
+
+
+                try {
+                    HttpClient httpclient = new DefaultHttpClient();
+                    HttpPost httppost = new
+                            // Here you need to put your server file address
+                            HttpPost("http://torqkd.com/user/ajs/uploadvideoupdatelocation");
+                    // httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                    httppost.setEntity(entityl);
+                    HttpResponse response = httpclient.execute(httppost);
+                    //HttpEntity entity = response.getEntity();
+                    //is = entity.getContent();
+
+                    //Context context = videoActivity.this;
+                    //Intent cameraintent = new Intent(context, MainActivity.class);
+
+                    // Launch default browser
+                    // context.startActivity(cameraintent);
+                    Log.v("log_tag", "In the try Loop");
+                } catch (Exception e) {
+                    Log.v("log_tag", "Error in http connection " + e.toString());
+                }
+
+
+            } catch (Exception e) {
+                Log.v("log_tag", "Error in http connection " + e.toString());
+            }
+
+            return "Success";
+            // (null);
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... unused) {
+
+        }
+
+        @Override
+        protected void onPostExecute(String sResponse) {
+            try {
+                if (dialog.isShowing())
+                    dialog.dismiss();
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), e.getMessage(),
+                        Toast.LENGTH_LONG).show();
+                Log.e(e.getClass().getName(), e.getMessage(), e);
+            }
+        }
+
+    }
+
+    class VideoUploadTask extends AsyncTask<Void, Void, String> {
+        @SuppressWarnings("unused")
+        @Override
+        protected String doInBackground(Void... unsued) {
+
+            com.torkqd.MultipartEntity reqEntity = new com.torkqd.MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+
+            Bitmap bitmap = ThumbnailUtils.createVideoThumbnail(fileuri,
+                    MediaStore.Images.Thumbnails.MINI_KIND);
+
+
+            InputStream is;
+            BitmapFactory.Options bfo;
+            Bitmap bitmapOrg;
+            ByteArrayOutputStream bao;
+
+            bfo = new BitmapFactory.Options();
+            bfo.inSampleSize = 2;
+            /*bitmapOrg = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory()
+             + "/" + customImage, bfo);*/
+
+            bao = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bao);
+            byte[] ba = bao.toByteArray();
+
+            String ba1 = Base64.encodeToString(ba, Base64.DEFAULT);
+            is = new ByteArrayInputStream(bao.toByteArray());
+
+
+
+
+            /*reqEntity.addPart("myFile",
+                    deviceId+ ".jpg", is);*/
+
+
+            //File sourceFile = new File(fileuri);
+
+            reqEntity.addPart("myFile",
+                    deviceId + ".jpg", is);
+
+            // Adding file data to http body
+            // reqEntity.addPart("thumb", new FileBody(sourceFile));
+            String base = Environment.getExternalStorageDirectory().getAbsolutePath().toString();
+
+            try {
+                reqEntity.addPart("basepath", new StringBody(base));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                reqEntity.addPart("localfilepath", new StringBody(fileuri));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            try {
+                reqEntity.addPart("name", new StringBody(deviceId));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            //FileBody bin = new FileBody(new File("C:/ABC.txt"));
+
+
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new
+                        // Here you need to put your server file address
+                        HttpPost("http://torqkd.com/user/ajs/uploadvideo");
+                // httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                httppost.setEntity(reqEntity);
+                HttpResponse response = httpclient.execute(httppost);
+                //HttpEntity entity = response.getEntity();
+                //is = entity.getContent();
+
+
+                Context context = videoActivity.this;
+
+                Intent cameraintent = new Intent(context, MainActivity.class);
+                cameraintent.putExtra("vlocalfileuril", fileuri);
+
+                // Launch default browser
+
+                context.startActivity(cameraintent);
+                Log.v("log_tag", "In the try Loop");
+            } catch (Exception e) {
+                Log.v("log_tag", "Error in http connection " + e.toString());
+            }
+
+            return "Success";
+            // (null);
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... unused) {
+
+        }
+
+        @Override
+        protected void onPostExecute(String sResponse) {
+            try {
+                if (dialog.isShowing())
+                    dialog.dismiss();
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), e.getMessage(),
+                        Toast.LENGTH_LONG).show();
+                Log.e(e.getClass().getName(), e.getMessage(), e);
+            }
+        }
 
     }
 

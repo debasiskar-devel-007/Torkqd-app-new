@@ -59,6 +59,8 @@
         </activity>
         <activity android:name="com.torkqd.videolist" >
         </activity>
+        <activity android:name="com.torkqd.videoplayerActivity" >
+        </activity>
         <activity
             android:name="com.torkqd.HelloFacebookSampleActivity"
             android:label="@string/app_name"

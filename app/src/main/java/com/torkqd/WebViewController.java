@@ -41,6 +41,20 @@ public class WebViewController extends WebViewClient {
             return true ;
 
 
+        }
+
+
+        if (url.contains("redirectvideoplay")) {
+
+            Context context = view.getContext();
+            Uri uri = Uri.parse(url);
+            String furi = uri.getQueryParameter("redirectvideoplay");
+            Intent cameraintent = new Intent(context, videoplayerActivity.class);
+            cameraintent.putExtra("fileuri", furi);
+            context.startActivity(cameraintent);
+            return true;
+
+
 
 
         }
@@ -237,20 +251,6 @@ public class WebViewController extends WebViewClient {
         error.getCertificate();
     }
 
-
-
-    public class GeoWebChromeClient extends WebChromeClient {
-        @Override
-        public void onGeolocationPermissionsShowPrompt(String origin,
-                                                       GeolocationPermissions.Callback callback) {
-            // Always grant permission since the app itself requires location
-            // permission and the user has therefore already granted it
-            callback.invoke(origin, true, false);
-        }
-    }
-
-
-
     public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
         Log.d(LOG_TAG, message);
         // This shows the dialog box.  This can be commented out for dev
@@ -265,6 +265,16 @@ public class WebViewController extends WebViewClient {
 
     public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
         callback.invoke(origin, true, false);
+    }
+
+    public class GeoWebChromeClient extends WebChromeClient {
+        @Override
+        public void onGeolocationPermissionsShowPrompt(String origin,
+                                                       GeolocationPermissions.Callback callback) {
+            // Always grant permission since the app itself requires location
+            // permission and the user has therefore already granted it
+            callback.invoke(origin, true, false);
+        }
     }
 
 }

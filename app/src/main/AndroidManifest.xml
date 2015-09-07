@@ -39,8 +39,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:exported="true"
             android:configChanges="keyboardHidden|screenSize|orientation"
+            android:exported="true"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -72,8 +72,8 @@
             android:name=".videoActivity" >
         </activity>
 
-        <activity
-            android:name=".videolist" >
+        <activity android:name=".videolist"></activity>
+        <activity android:name=".videoplayerActivity">
         </activity>
 
 
@@ -85,8 +85,8 @@
 
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/>
         <meta-data android:name="com.facebook.sdk.ApplicationName"
             android:value="@string/facebook_app_name" />

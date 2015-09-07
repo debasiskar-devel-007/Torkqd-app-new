@@ -41,7 +41,7 @@ import java.util.TreeSet;
 
 public class groupimage extends Activity {
     private GridView gridView;
-    private GridViewAdapter gridAdapter;
+    private GridViewAdapterold gridAdapter;
     private Bitmap bitmap;
     private ProgressDialog dialog;
     private String deviceId;
@@ -60,7 +60,7 @@ public class groupimage extends Activity {
 
 
         gridView = (GridView) findViewById(R.id.gridView);
-        gridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getFilePaths());
+        gridAdapter = new GridViewAdapterold(this, R.layout.grid_item_layout, getFilePaths());
         gridView.setAdapter(gridAdapter);
 
 
