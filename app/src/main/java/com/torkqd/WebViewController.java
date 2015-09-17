@@ -14,6 +14,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class WebViewController extends WebViewClient {
 
@@ -103,6 +104,23 @@ public class WebViewController extends WebViewClient {
 
             Intent cameraintent = new Intent(context, upload.class);
             cameraintent.putExtra("uploadtype", "editpb");
+            context.startActivity(cameraintent);
+
+
+            return true ;
+
+
+
+
+        }
+
+        if(url.contains("http://torqkd.com/getAllFiles"))
+        {
+
+            Context context = view.getContext();
+
+            Intent cameraintent = new Intent(context, allfilelist.class);
+            //cameraintent.putExtra("uploadtype", "editpb");
             context.startActivity(cameraintent);
 
 
@@ -219,18 +237,32 @@ public class WebViewController extends WebViewClient {
 
 
     public void onLoadResource (WebView view, String url) {
-        if (progressDialog == null) {
+        /*if (progressDialog == null) {
             // in standard case YourActivity.this
             Context context = view.getContext();
             progressDialog = new ProgressDialog(context);
             progressDialog.setMessage("Loading...");
-            //progressDialog.show();
-        }
+            progressDialog.show();
+        }*/
     }
+
+    /*public void onProgressChanged(WebView view, int progress) {
+        // Activities and WebViews measure progress with different scales.
+        // The progress meter will automatically disappear when we reach 100%
+
+        Context context = view.getContext();
+        CharSequence text = "Hello toast!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast1 = Toast.makeText(context, text+"--"+progress, duration);
+        toast1.show();
+
+    }*/
+
     public void onPageFinished(WebView view, String url) {
         try{
             if (progressDialog.isShowing()) {
-               // progressDialog.dismiss();
+                progressDialog.dismiss();
                 progressDialog = null;
             }
         }catch(Exception exception){
@@ -266,6 +298,8 @@ public class WebViewController extends WebViewClient {
     public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
         callback.invoke(origin, true, false);
     }
+
+
 
     public class GeoWebChromeClient extends WebChromeClient {
         @Override

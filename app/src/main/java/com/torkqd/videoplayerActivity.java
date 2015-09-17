@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -94,7 +95,10 @@ public class videoplayerActivity extends Activity {
 
         vidPreview = (VideoView) findViewById(R.id.videoPreview);
 
+        MediaController vidControl = new MediaController(this);
         vidPreview.setVisibility(View.VISIBLE);
+        vidControl.setAnchorView(vidPreview);
+        vidPreview.setMediaController(vidControl);
         vidPreview.setVideoPath(vlocalfileuril);
         // start playing
         vidPreview.start();

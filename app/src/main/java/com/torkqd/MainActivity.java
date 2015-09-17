@@ -21,6 +21,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.lang.reflect.Method;
 
@@ -57,9 +58,17 @@ public class MainActivity extends Activity implements LocationListener {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+        if (progressDialog == null) {
+            // in standard case YourActivity.this
+            progressDialog = new ProgressDialog(MainActivity.this);
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+        }
+		// turnGPSOn();
 		// turnGPSOn();
 
 		myWebView = (WebView) findViewById(R.id.webView1);
+        myWebView.getSettings().setJavaScriptEnabled(true);
 
         myWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
 
@@ -177,7 +186,7 @@ public class MainActivity extends Activity implements LocationListener {
         // launchWebview();
 		if (!isGPSEnable()) {
 			startActivityForResult(new Intent(
-					android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS),
+  					android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS),
 					GPS_RESULTCODE);
 		} else {
 			launchWebview();
@@ -307,7 +316,7 @@ public class MainActivity extends Activity implements LocationListener {
         myWebView.getSettings().setGeolocationEnabled(true);
         myWebView.getSettings().setJavaScriptEnabled(true);
         Context context = myWebView.getContext();
-        myWebView.getSettings().setGeolocationDatabasePath( context.getFilesDir().getPath() );
+        myWebView.getSettings().setGeolocationDatabasePath(context.getFilesDir().getPath());
         myWebView.getSettings().setLoadWithOverviewMode(true);
         myWebView.getSettings().setUseWideViewPort(true);
         myWebView.setWebChromeClient(new WebChromeClient() {
@@ -318,6 +327,10 @@ public class MainActivity extends Activity implements LocationListener {
 
 		myWebView.loadUrl("http://torqkd.com/torqkd_demo/#/");
 
+        myWebView.getSettings().setJavaScriptEnabled(true);
+
+        myWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
+
         // settings.setPluginsEnabled(true);
         methodInvoke(myWebView.getSettings(), "setPluginsEnabled", new Class[] { boolean.class }, new Object[] { true });
         // settings.setPluginState(PluginState.ON);
@@ -327,11 +340,50 @@ public class MainActivity extends Activity implements LocationListener {
         // settings.setAllowUniversalAccessFromFileURLs(true);
         methodInvoke(myWebView.getSettings(), "setAllowUniversalAccessFromFileURLs", new Class[] { boolean.class }, new Object[] { true });
         // settings.setAllowFileAccessFromFileURLs(true);
-        methodInvoke(myWebView.getSettings(), "setAllowFileAccessFromFileURLs", new Class[] { boolean.class }, new Object[] { true });
+        methodInvoke(myWebView.getSettings(), "setAllowFileAccessFromFileURLs", new Class[]{boolean.class}, new Object[]{true});
+
+        myWebView.getSettings().setJavaScriptEnabled(true);
+        //getWindow().requestFeature(Window.FEATURE_PROGRESS);
+        final Activity activity = this;
 
 
 		myWebView.setWebChromeClient(new WebChromeClient() {
-			// For Android 3.0+
+
+
+
+
+
+            public void onProgressChanged(WebView view, int progress) {
+                // Activities and WebViews measure progress with different scales.
+                // The progress meter will automatically disappear when we reach 100%
+                //activity.setProgress(progress * 1000);
+                if (progress > 65) {
+
+                    try {
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                            progressDialog = null;
+                        }
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                    }
+                }
+                if(progress < 65){
+
+                    if (progressDialog == null) {
+                        // in standard case YourActivity.this
+                        progressDialog = new ProgressDialog(MainActivity.this);
+                        progressDialog.setMessage("Loading...");
+                        progressDialog.show();
+                    }
+                }
+
+            }
+
+
+
+
+            // For Android 3.0+
             // For Android > 4.1
             //The undocumented magic method override
             //Eclipse will swear at you if you try to put @Override here

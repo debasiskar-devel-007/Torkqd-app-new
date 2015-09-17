@@ -10,6 +10,7 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -76,6 +77,7 @@ public class videoActivity extends Activity {
     private String deviceId;
     private VideoView vidPreview;
     private Uri fileUri;
+    int orientation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +112,24 @@ public class videoActivity extends Activity {
                             "Please select image", Toast.LENGTH_SHORT).show();
                 }
                 else {
+
+                   /* MediaMetadataRetriever retriever = new  MediaMetadataRetriever();
+                    Bitmap bmp = null;
+
+
+                        retriever.setDataSource("...location of your video file");
+                        bmp = retriever.getFrameAtTime();
+                        int videoHeight=bmp.getHeight();
+                        int videoWidth=bmp.getWidth();
+                    Toast.makeText(getApplicationContext(), "height="+videoHeight+"width="+videoWidth,
+                            Toast.LENGTH_LONG).show();*/
+
+                    orientation=getResources().getConfiguration().orientation;
+                    Toast.makeText(getApplicationContext(), "orientation="+orientation,
+                            Toast.LENGTH_LONG).show();
+
+                    //Activity.getResources().getConfiguration().orientation
+
                     dialog = ProgressDialog.show(videoActivity.this,
                             "Uploading", "Please wait , It may take few minutes ...", true);
                     new VideoUploadTask().execute();
@@ -600,6 +620,11 @@ public class videoActivity extends Activity {
                 }
                 try {
                     entity.addPart("name", new StringBody(deviceId));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    entity.addPart("orientation", new StringBody(String.valueOf(orientation)));
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

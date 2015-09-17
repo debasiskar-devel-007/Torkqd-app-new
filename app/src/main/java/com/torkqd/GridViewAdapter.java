@@ -27,12 +27,15 @@ public class GridViewAdapter extends ArrayAdapter {
     private List<String> fLst;
     private String url;
     private ImageView image;
+    private ImageView loadericon;
+    public ImageLoader imageLoader;
 
     public GridViewAdapter(Context context, int layoutResourceId, List<String> data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
         this.fLst = data;
+        imageLoader=new ImageLoader(context.getApplicationContext());
         //this.data = data;
     }
 
@@ -49,6 +52,7 @@ public class GridViewAdapter extends ArrayAdapter {
             holder.imageTitle = (TextView) row.findViewById(R.id.text);
             holder.image = (ImageView) row.findViewById(R.id.image);
             holder.picon = (ImageView) row.findViewById(R.id.picon);
+            holder.loadericon = (ImageView) row.findViewById(R.id.loadericon);
             row.setTag(holder);
         } else {
             holder = (ViewHolder) row.getTag();
@@ -64,19 +68,25 @@ public class GridViewAdapter extends ArrayAdapter {
             /*bitmap = ThumbnailUtils.createVideoThumbnail(fileName,
                     MediaStore.Video.Thumbnails.FULL_SCREEN_KIND);
             holder.image.setImageBitmap(bitmap);*/
-            vloadImage(fileName, holder.image);
+           // vloadImage(fileName, holder.image);
+
             //loadImage(fileName, holder.image);
             image = holder.image;
+            loadericon = holder.loadericon;
             url = fileName;
-            //new loadvideothumb().execute();
+            //imageLoader.DisplayImage(fileName, image,1);
+            new loadvideothumb().execute();
 
         } else {
             holder.picon.setVisibility(View.INVISIBLE);
 
             //bitmap = BitmapFactory.decodeFile(fileName);
-            loadImage(fileName, holder.image);
+           // loadImage(fileName, holder.image);
             url = fileName;
             image = holder.image;
+            loadericon = holder.loadericon;
+            imageLoader.DisplayImage(fileName, image,2);
+
             // new loadimagethumb().execute();
 
 
@@ -91,7 +101,7 @@ public class GridViewAdapter extends ArrayAdapter {
         //super(url, image);
         // load an image (maybe do this using an AsyncTask
         // if you're loading from network
-        Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(url), 150, 150);
+        Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(url), 100, 100);
         //image.setImageURI(Uri.parse(url));
         image.setImageBitmap(ThumbImage);
 
@@ -104,7 +114,7 @@ public class GridViewAdapter extends ArrayAdapter {
         // if you're loading from network
         Bitmap bitmap;
         bitmap = ThumbnailUtils.createVideoThumbnail(url,
-                MediaStore.Video.Thumbnails.MINI_KIND);
+                MediaStore.Video.Thumbnails.MICRO_KIND);
         image.setImageBitmap(bitmap);
 
 
@@ -116,6 +126,7 @@ public class GridViewAdapter extends ArrayAdapter {
         TextView imageTitle;
         ImageView image;
         ImageView picon;
+        ImageView loadericon;
     }
 
 
@@ -143,6 +154,8 @@ public class GridViewAdapter extends ArrayAdapter {
             BitmapFactory.decodeFile(url, options);
             int imageHeight = options.outHeight;
             int imageWidth = options.outWidth;
+            loadericon.setVisibility(View.GONE);
+            image.setVisibility(View.VISIBLE);
             if (imageHeight > 400 && imageWidth > 400) {
                 Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(url), 150, 150);
                 //image.setImageURI(Uri.parse(url));
@@ -177,6 +190,8 @@ public class GridViewAdapter extends ArrayAdapter {
             Bitmap bitmap;
             bitmap = ThumbnailUtils.createVideoThumbnail(url,
                     MediaStore.Video.Thumbnails.MINI_KIND);
+            //loadericon.setVisibility(View.GONE);
+            //image.setVisibility(View.VISIBLE);
             image.setImageBitmap(bitmap);
 
 
