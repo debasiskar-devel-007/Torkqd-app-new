@@ -10,9 +10,11 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ public class GridViewAdapter extends ArrayAdapter {
     private ImageView image;
     private ImageView loadericon;
     public ImageLoader imageLoader;
+    public  WebView web;
 
     public GridViewAdapter(Context context, int layoutResourceId, List<String> data) {
         super(context, layoutResourceId, data);
@@ -52,6 +55,7 @@ public class GridViewAdapter extends ArrayAdapter {
             holder.imageTitle = (TextView) row.findViewById(R.id.text);
             holder.image = (ImageView) row.findViewById(R.id.image);
             holder.picon = (ImageView) row.findViewById(R.id.picon);
+            holder.web = (WebView) row.findViewById(R.id.webv);
             holder.loadericon = (ImageView) row.findViewById(R.id.loadericon);
             row.setTag(holder);
         } else {
@@ -75,19 +79,25 @@ public class GridViewAdapter extends ArrayAdapter {
             loadericon = holder.loadericon;
             url = fileName;
             //imageLoader.DisplayImage(fileName, image,1);
-            new loadvideothumb().execute();
+           // new loadvideothumb().execute();
 
         } else {
             holder.picon.setVisibility(View.INVISIBLE);
 
             //bitmap = BitmapFactory.decodeFile(fileName);
            // loadImage(fileName, holder.image);
+
             url = fileName;
             image = holder.image;
+            web = holder.web;
             loadericon = holder.loadericon;
-            imageLoader.DisplayImage(fileName, image,2);
+            //imageLoader.DisplayImage(fileName, image,2);
 
-            // new loadimagethumb().execute();
+
+            /*Toast.makeText(context, "/ html=" + html,
+                    Toast.LENGTH_LONG).show();*/
+
+             new loadimagethumb().execute();
 
 
             // holder.image.setImageURI(Uri.parse(fileName));
@@ -127,6 +137,7 @@ public class GridViewAdapter extends ArrayAdapter {
         ImageView image;
         ImageView picon;
         ImageView loadericon;
+        WebView web;
     }
 
 
@@ -149,7 +160,7 @@ public class GridViewAdapter extends ArrayAdapter {
         protected void onPostExecute(String sResponse) {
 
 
-            BitmapFactory.Options options = new BitmapFactory.Options();
+           /* BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(url, options);
             int imageHeight = options.outHeight;
@@ -163,7 +174,17 @@ public class GridViewAdapter extends ArrayAdapter {
 
             } else {
                 image.setVisibility(View.GONE);
-            }
+            }*/
+
+            String html = new String();
+            final String URI_PREFIX = "file://";
+            html = ("<html><body><img height=150px width=150px src=\""+URI_PREFIX+url+ "\" align=left></body></html>");
+
+            web.loadDataWithBaseURL(URI_PREFIX,
+                    html,
+                    "text/html",
+                    "utf-8",
+                    "");
 
 
         }

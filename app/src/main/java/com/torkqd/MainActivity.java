@@ -10,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,9 +22,17 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.File;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class MainActivity extends Activity implements LocationListener {
 
@@ -39,6 +48,19 @@ public class MainActivity extends Activity implements LocationListener {
     private Button btn1;
     private String deviceId;
     private String vlocalfileuril;
+
+    private ListView mListView;
+    private List<String> fileNameList;
+    private List<Long> filecreatdtimelist;
+    //private MainActivity.FlAdapter mAdapter;
+    private File file;
+    private File tfile;
+    int dircount;
+    List<String> flLst = new ArrayList<String>();
+    List<String> fnamelLst = new ArrayList<String>();
+    String state = Environment.getExternalStorageState();
+    List<String> ls;
+
 
     private final static Object methodInvoke(Object obj, String method,
                                              Class<?>[] parameterTypes, Object[] args) {
@@ -58,6 +80,8 @@ public class MainActivity extends Activity implements LocationListener {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+        file = Environment.getExternalStorageDirectory();
+        ls=getFilePaths();
         if (progressDialog == null) {
             // in standard case YourActivity.this
             progressDialog = new ProgressDialog(MainActivity.this);
@@ -71,6 +95,7 @@ public class MainActivity extends Activity implements LocationListener {
         myWebView.getSettings().setJavaScriptEnabled(true);
 
         myWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
+
 
 
         vlocalfileuril = null;
@@ -216,7 +241,12 @@ public class MainActivity extends Activity implements LocationListener {
         myWebView.loadUrl("javascript:setValue("+latitude+")");
         myWebView.loadUrl("javascript:setValuelong("+longitude+")");
 
-        myWebView.loadUrl("javascript:add_userdevice_with_session('"+deviceId +"')");
+        myWebView.loadUrl("javascript:add_userdevice_with_session('" + deviceId + "')");
+
+       // myWebView.loadUrl("javascript:loadImage('"+ ls+"')");
+
+
+
 
 
         /*Context context = myWebView.getContext();
@@ -344,6 +374,41 @@ public class MainActivity extends Activity implements LocationListener {
 
         myWebView.getSettings().setJavaScriptEnabled(true);
         //getWindow().requestFeature(Window.FEATURE_PROGRESS);
+
+
+
+        /*final String URI_PREFIX = "file://";
+
+        String html = new String();
+        html="";
+       // html = ("<html><body><header><h1>Title</h1></header><section>");
+
+        for(int i=0;i<2;i++) {
+            html.concat("<img  src=\"" + URI_PREFIX + ls.get(i) + "\" align=left>");
+        }*/
+       // html.concat("</section></body></html>");
+
+/*
+        myWebView.loadDataWithBaseURL(URI_PREFIX,
+                html,
+                "text/html",
+                "utf-8",
+                "");*/
+
+
+
+        /*String html = new String();*/
+       /* html = ("<html><body><header><h1>Title</h1></header><section><img src=\""+URI_PREFIX+ls.get(1)+ "\" align=left><p>Content</p></section></body></html>");
+
+        myWebView.loadDataWithBaseURL(URI_PREFIX,
+                html,
+                "text/html",
+                "utf-8",
+                "");*/
+
+
+
+
         final Activity activity = this;
 
 
@@ -367,6 +432,8 @@ public class MainActivity extends Activity implements LocationListener {
                     } catch (Exception exception) {
                         exception.printStackTrace();
                     }
+
+                   //
                 }
                 if(progress < 65){
 
@@ -459,7 +526,7 @@ public class MainActivity extends Activity implements LocationListener {
 	// automatic turn off the gps
 	public void turnGPSOff() {
 		String provider = Settings.Secure.getString(getContentResolver(),
-				Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+                Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
 		if (provider.contains("gps")) { // if gps is enabled
 			final Intent poke = new Intent();
 			poke.setClassName("com.android.settings",
@@ -529,6 +596,105 @@ public class MainActivity extends Activity implements LocationListener {
 
 
 
+    public void populatefilelist(String fpath) {
+
+        tfile = new File(fpath);
+        File[] tfileArr = tfile.listFiles();
+        int tlength = tfileArr.length;
+        for (int i = 0; i < tlength; i++) {
+            File tf = tfileArr[i];
+            String filetype;
+            if (tf.isDirectory()) {
+                filetype = "directory";
+                // flLst.add(tf.getName());
+                int count = StringUtils.countMatches(tf.getAbsolutePath(), "/");
+               /* Toast.makeText(getApplicationContext(), "/ count=" + count,
+                        Toast.LENGTH_LONG).show();*/
+                if (count < (dircount + 3)) populatefilelist(tf.getAbsolutePath());
+            } else filetype = "file";
+        /*Toast.makeText(getApplicationContext(),"filename="+ tf.getName()+"filetype="+filetype+"getabspath="+tf.getAbsolutePath(),
+                Toast.LENGTH_LONG).show();*/
+            if (tf.getName().contains(".JPEG") ||
+                    tf.getName().contains(".jpeg") ||
+                    tf.getName().contains(".png") ||
+                    tf.getName().contains(".PNG") ||
+                    tf.getName().contains(".JPG") ||
+                    tf.getName().contains(".jpg") ||
+                    tf.getName().contains(".bmp") ||
+                    tf.getName().contains(".BMP") ||
+                    tf.getName().contains(".GIF") ||
+                    tf.getName().contains(".gif") ||
+                    tf.getName().contains(".mp4") ||
+                    tf.getName().contains(".MP4")
+                    ) {
+
+
+                /*Toast.makeText(getApplicationContext(), "/ createdtime=" + tf.lastModified(),
+                        Toast.LENGTH_LONG).show();*/
+
+                if (!Arrays.asList(fnamelLst).contains(tf.getName())) {
+                    flLst.add(tf.getAbsolutePath());
+                    //filecreatdtimelist.add(tf.lastModified());
+                    fnamelLst.add(tf.getName());
+
+
+                }
+
+            }
+        }
+
+    }
+
+    public List<String> getFilePaths() {
+
+
+        if (Environment.MEDIA_MOUNTED.equals(state) && file.isDirectory()) {
+            File[] fileArr = file.listFiles();
+            int length = fileArr.length;
+            for (int i = 0; i < length; i++) {
+                File f = fileArr[i];
+                String filetype;
+                if (f.isDirectory()) {
+                    filetype = "directory";
+                    populatefilelist(f.getAbsolutePath());
+                    // flLst.add(f.getName());
+
+                } else filetype = "file";
+                /* Toast.makeText(getApplicationContext(),"filename="+ f.getName()+"filetype="+filetype+"getabspath="+f.getAbsolutePath(),
+                        Toast.LENGTH_LONG).show();*/
+                if (f.getName().contains(".JPEG") ||
+                        f.getName().contains(".jpeg") ||
+                        f.getName().contains(".png") ||
+                        f.getName().contains(".PNG") ||
+                        f.getName().contains(".JPG") ||
+                        f.getName().contains(".jpg") ||
+                        f.getName().contains(".bmp") ||
+                        f.getName().contains(".BMP") ||
+                        f.getName().contains(".GIF") ||
+                        f.getName().contains(".gif") ||
+                        f.getName().contains(".mp4") ||
+                        f.getName().contains(".MP4")
+                        ) {
+
+                    if (!Arrays.asList(fnamelLst).contains(f.getName())) {
+                        flLst.add(f.getAbsolutePath());
+                        fnamelLst.add(f.getName());
+
+                     //
+                    }
+                }
+
+
+            }
+        }
+
+        Collections.reverse(flLst);
+
+
+        return flLst;
+
+
+    }
 
 
 
