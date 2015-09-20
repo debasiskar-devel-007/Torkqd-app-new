@@ -59,4 +59,4 @@
         android:drawSelectorOnTop="true"
         android:onClick="openvideo"
         android:text="Take A Video" />
-</RelativeLayout><!-- From: file:/E:/projects/Torkqd-app-master/app/src/main/res/layout/vlist.xml -->
+</RelativeLayout><!-- From: file:/F:/androidp/Torkqd-app-master/app/src/main/res/layout/vlist.xml -->

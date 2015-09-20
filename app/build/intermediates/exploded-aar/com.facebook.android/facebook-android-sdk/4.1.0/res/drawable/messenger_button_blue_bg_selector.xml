@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
     Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
 
     You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
@@ -19,17 +20,18 @@
 -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true">
-        <shape android:shape="rectangle">
-            <corners android:radius="2dp" />
-            <solid android:color="#1f8eff" />
-        </shape>
-    </item>
+  <item android:state_pressed="true">
+    <shape android:shape="rectangle">
+      <corners android:radius="2dp" />
+      <solid android:color="#1f8eff" />
+    </shape>
+  </item>
 
-    <item>
-        <shape android:shape="rectangle">
-            <corners android:radius="2dp" />
-            <solid android:color="#0084ff" />
-        </shape>
-    </item>
-</selector><!-- From: file:/Users/gokhanc/src/android-sdk/facebook/res/drawable/messenger_button_blue_bg_selector.xml -->
+  <item>
+    <shape android:shape="rectangle">
+      <corners android:radius="2dp" />
+      <solid android:color="#0084ff" />
+    </shape>
+  </item>
+</selector>
+<!-- From: file:/Users/gokhanc/src/android-sdk/facebook/res/drawable/messenger_button_blue_bg_selector.xml -->

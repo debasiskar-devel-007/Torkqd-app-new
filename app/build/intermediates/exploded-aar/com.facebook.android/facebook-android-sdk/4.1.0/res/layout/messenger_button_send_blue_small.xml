@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
     Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
 
     You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
@@ -18,11 +19,14 @@
     CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/messenger_send_button"
-    style="@style/MessengerButton.Blue.Small">
-
-    <TextView
-        style="@style/MessengerButtonText.Blue.Small"
-        android:text="@string/messenger_send_button_text" />
-</FrameLayout><!-- From: file:/Users/gokhanc/src/android-sdk/facebook/res/layout/messenger_button_send_blue_small.xml -->
+<FrameLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/messenger_send_button"
+  style="@style/MessengerButton.Blue.Small"
+  >
+  <TextView
+    android:text="@string/messenger_send_button_text"
+    style="@style/MessengerButtonText.Blue.Small"
+    />
+</FrameLayout>
+<!-- From: file:/Users/gokhanc/src/android-sdk/facebook/res/layout/messenger_button_send_blue_small.xml -->

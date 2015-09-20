@@ -3,10 +3,10 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
     android:layout_height="wrap_content"
     android:layout_gravity="left"
     android:gravity="left"
+    android:orientation="horizontal"
 
     >
 
@@ -15,37 +15,51 @@
     <ImageView android:id="@+id/imgIcon"
         android:layout_width="320dp"
         android:layout_height="fill_parent"
-        android:paddingLeft="10dip"
         android:layout_marginTop="20dp"
-        android:scaleType="centerCrop"
-        android:paddingRight="10dip"/>
+        android:paddingLeft="10dip"
+        android:visibility="invisible"
+        android:paddingRight="10dip"
+        android:scaleType="centerCrop" />
+
+
+    <ImageView
+        android:id="@+id/widget35"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/stub"
+        />
+
+
     <ImageView
         android:id="@+id/widget37"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/playsmall"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/playsmall"
         />
 
     <RelativeLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="invisible"
+        android:layout_marginRight="10dip"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="10dip">
+        android:orientation="horizontal"
+        android:visibility="invisible">
 
         <TextView android:id="@+id/txtTitle"
             android:layout_width="250dip"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:textStyle="normal"
-            android:textSize="15dp"
-            android:textColor="#FF0000"
-            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="left"
+            android:textColor="#FF0000"
+            android:textSize="15dp"
+            android:textStyle="normal"
             android:visibility="invisible"
             />
 
@@ -53,9 +67,9 @@
             android:layout_width="250dip"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:textStyle="italic"
+            android:textColor="#00FF00"
             android:textSize="12dp"
-            android:visibility="invisible"
-            android:textColor="#00FF00" />
+            android:textStyle="italic"
+            android:visibility="invisible" />
     </RelativeLayout>
-</RelativeLayout><!-- From: file:/E:/projects/Torkqd-app-master/app/src/main/res/layout/listitem.xml -->
+</RelativeLayout><!-- From: file:/F:/androidp/Torkqd-app-master/app/src/main/res/layout/listitem.xml -->

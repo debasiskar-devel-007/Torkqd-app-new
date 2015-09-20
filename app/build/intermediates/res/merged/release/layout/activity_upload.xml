@@ -1,8 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent">
 
     <LinearLayout
         android:id="@+id/linear_layout"
@@ -23,4 +22,4 @@
         android:layout_height="fill_parent"
         android:layout_below="@id/linear_layout" />
 
-</ScrollView><!-- From: file:/E:/projects/Torkqd-app-master/app/src/main/res/layout/activity_upload.xml -->
+</ScrollView><!-- From: file:/F:/androidp/Torkqd-app-master/app/src/main/res/layout/activity_upload.xml -->

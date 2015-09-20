@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
     Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
 
     You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
@@ -20,6 +21,8 @@
 
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/com_facebook_fragment_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" /><!-- From: file:/Users/gokhanc/src/android-sdk/facebook/res/layout/com_facebook_activity_layout.xml -->
+             android:id="@+id/com_facebook_fragment_container"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+    />
+<!-- From: file:/Users/gokhanc/src/android-sdk/facebook/res/layout/com_facebook_activity_layout.xml -->

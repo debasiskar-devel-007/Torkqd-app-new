@@ -15,9 +15,11 @@ import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Video.Thumbnails;
 import android.provider.Settings;
+import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
@@ -139,8 +141,8 @@ public class upload extends Activity {
                 String prompt = (String) parent.getItemAtPosition(position);
 
 
-                /*Toast.makeText(getApplicationContext(), "image clicked " + prompt,
-                        Toast.LENGTH_LONG).show();*/
+                Toast.makeText(getApplicationContext(), "image clicked " + prompt,
+                        Toast.LENGTH_LONG).show();
 
 
 
@@ -179,6 +181,42 @@ public class upload extends Activity {
 
 
     }
+    public static void startuploader1(String url){
+
+
+        upload nup=new upload();
+        Toast.makeText(nup, "/ clicked?=" + url,
+                Toast.LENGTH_LONG).show();
+        //nup.startuploader(url);
+
+    }
+    public void startuploader(String url){
+        String prompt=url;
+
+        dialog = ProgressDialog.show(upload.this,
+                "Uploading", "Please wait...", true);
+        if (prompt.contains(".mp4") || prompt.contains(".MP4")) {
+
+            fileuri = prompt;
+            new VideoUploadTask().execute();
+
+            SystemClock.sleep(1000);
+
+
+            new VideoUploadTaskupdatelocation().execute();
+            new VideoUploadTaskfull().execute();
+
+        } else {
+
+            decodeFile(prompt);
+            new ImageUploadTask().execute();
+
+        }
+
+
+    }
+
+
 
     public void decodeFile(String filePath) {
         // Decode image size
@@ -816,6 +854,25 @@ public class upload extends Activity {
                         Toast.LENGTH_LONG).show();
                 Log.e(e.getClass().getName(), e.getMessage(), e);
             }
+        }
+
+        public class GifView extends WebView {
+
+            /**
+             * @param context
+             * @param attrs
+             */
+            public GifView(Context context, AttributeSet attrs) {
+                super(context, attrs);
+                setClickable(false);
+                setFocusable(false);
+                setFocusableInTouchMode(false);
+                setLongClickable(false);
+
+            }
+
+            // actions
+
         }
 
     }

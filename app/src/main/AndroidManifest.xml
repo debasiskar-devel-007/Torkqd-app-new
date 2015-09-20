@@ -69,7 +69,7 @@
             android:name=".upload" >
         </activity>
         <activity
-            android:name=".videoActivity" >
+            android:name=".videoActivity" android:screenOrientation="landscape" >
         </activity>
 
         <activity android:name=".videolist"></activity>

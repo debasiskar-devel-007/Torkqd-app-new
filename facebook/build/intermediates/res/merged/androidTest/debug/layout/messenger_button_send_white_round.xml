@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
 
     You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
@@ -19,11 +18,9 @@
     CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<Button
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/messenger_send_button"
-  android:layout_width="58dp"
-  android:layout_height="59dp"
-  android:background="@drawable/messenger_button_white_bg_round"
-  />
-<!-- From: file:/E:/projects/Torkqd-app-master/facebook/res/layout/messenger_button_send_white_round.xml --><!-- From: file:/E:/projects/Torkqd-app-master/facebook/build/intermediates/bundles/debug/res/layout/messenger_button_send_white_round.xml -->
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/messenger_send_button"
+    android:layout_width="58dp"
+    android:layout_height="59dp"
+    android:background="@drawable/messenger_button_white_bg_round" />
+<!-- From: file:/F:/androidp/Torkqd-app-master/facebook/res/layout/messenger_button_send_white_round.xml --><!-- From: file:/F:/androidp/Torkqd-app-master/facebook/build/intermediates/bundles/debug/res/layout/messenger_button_send_white_round.xml -->

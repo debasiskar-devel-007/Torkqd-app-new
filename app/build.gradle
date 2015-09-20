@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.torkqd"
-        minSdkVersion 10
+        minSdkVersion 14
         targetSdkVersion 18
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_7
@@ -18,6 +18,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+        debug {
+            debuggable true
         }
     }
 
