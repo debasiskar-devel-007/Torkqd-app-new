@@ -14,7 +14,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class WebViewController extends WebViewClient {
 
@@ -136,8 +135,8 @@ public class WebViewController extends WebViewClient {
 
             Context context = view.getContext();
 
-            Intent cameraintent = new Intent(context, videolist.class);
-            //cameraintent.putExtra("uploadtype", "editpb");
+            Intent cameraintent = new Intent(context, upload.class);
+            cameraintent.putExtra("uploadtype", "vdo");
             context.startActivity(cameraintent);
 
 

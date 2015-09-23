@@ -15,7 +15,7 @@ public class GifView extends WebView {
      */
     public GifView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setClickable(false);
+        setClickable(true);
         setFocusable(false);
         setFocusableInTouchMode(false);
         setLongClickable(false);

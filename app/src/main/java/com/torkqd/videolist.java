@@ -15,9 +15,11 @@ import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Video.Thumbnails;
 import android.provider.Settings;
+import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
@@ -95,15 +97,15 @@ public class videolist extends Activity {
         deviceId = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
         Intent intent = getIntent();
-        uploadtype = intent.getStringExtra("uploadtype");
+        uploadtype =  intent.getStringExtra("uploadtype");
 
-        uploadtype = uploadtype.valueOf(uploadtype);
+        uploadtype=uploadtype.valueOf(uploadtype);
 
 
        /* Toast.makeText(getApplicationContext(), "image clicked "+uploadtype,
          Toast.LENGTH_LONG).show();*/
         Button playButton = (Button) findViewById(R.id.imgcancelbtn);
-        if (uploadtype.matches("group")) {
+        if(uploadtype.matches("group")){
             /*Toast.makeText(getApplicationContext(), "image clicked in group ",
                     Toast.LENGTH_LONG).show();*/
             playButton.setVisibility(View.GONE);
@@ -111,14 +113,14 @@ public class videolist extends Activity {
 
         }
 
-        if (uploadtype.matches("editp")) {
+        if(uploadtype.matches("editp")){
            /* Toast.makeText(getApplicationContext(), "image clicked in group ",
                     Toast.LENGTH_LONG).show();*/
             playButton.setVisibility(View.GONE);
 
 
         }
-        if (uploadtype.matches("editpb")) {
+        if(uploadtype.matches("editpb")){
            /* Toast.makeText(getApplicationContext(), "image clicked in group ",
                     Toast.LENGTH_LONG).show();*/
             playButton.setVisibility(View.GONE);
@@ -139,8 +141,9 @@ public class videolist extends Activity {
                 String prompt = (String) parent.getItemAtPosition(position);
 
 
-                /*Toast.makeText(getApplicationContext(), "image clicked " + prompt,
-                        Toast.LENGTH_LONG).show();*/
+                Toast.makeText(getApplicationContext(), "image clicked " + prompt,
+                        Toast.LENGTH_LONG).show();
+
 
 
                 dialog = ProgressDialog.show(com.torkqd.videolist.this,
@@ -175,7 +178,45 @@ public class videolist extends Activity {
         });
 
 
+
+
     }
+    public static void startuploader1(Context context ,String url){
+
+
+        com.torkqd.videolist nup=new videolist();
+        Toast.makeText(nup, "/ clicked?=" + url,
+                Toast.LENGTH_LONG).show();
+        //nup.startuploader(url);
+
+    }
+    public void startuploader(String url){
+        String prompt=url;
+
+        dialog = ProgressDialog.show(com.torkqd.videolist.this,
+                "Uploading", "Please wait...", true);
+        if (prompt.contains(".mp4") || prompt.contains(".MP4")) {
+
+            fileuri = prompt;
+            new VideoUploadTask().execute();
+
+            SystemClock.sleep(1000);
+
+
+            new VideoUploadTaskupdatelocation().execute();
+            new VideoUploadTaskfull().execute();
+
+        } else {
+
+            decodeFile(prompt);
+            new ImageUploadTask().execute();
+
+        }
+
+
+    }
+
+
 
     public void decodeFile(String filePath) {
         // Decode image size
@@ -205,7 +246,9 @@ public class videolist extends Activity {
                 Toast.LENGTH_LONG).show();*/
 
 
-        // imgView.setImageBitmap(bitmap);
+
+
+       // imgView.setImageBitmap(bitmap);
 
     }
 
@@ -312,9 +355,8 @@ public class videolist extends Activity {
             } else filetype = "file";
         /*Toast.makeText(getApplicationContext(),"filename="+ tf.getName()+"filetype="+filetype+"getabspath="+tf.getAbsolutePath(),
                 Toast.LENGTH_LONG).show();*/
-            if (
-                    tf.getName().contains(".mp4") ||
-                            tf.getName().contains(".MP4")
+            if (   tf.getName().contains(".mp4") ||
+                    tf.getName().contains(".MP4")
                     ) {
 
 
@@ -351,9 +393,8 @@ public class videolist extends Activity {
                 } else filetype = "file";
                 /* Toast.makeText(getApplicationContext(),"filename="+ f.getName()+"filetype="+filetype+"getabspath="+f.getAbsolutePath(),
                         Toast.LENGTH_LONG).show();*/
-                if (
-                        f.getName().contains(".mp4") ||
-                                f.getName().contains(".MP4")
+                if (    f.getName().contains(".mp4") ||
+                        f.getName().contains(".MP4")
                         ) {
 
                     if (!Arrays.asList(fnamelLst).contains(f.getName())) {
@@ -722,7 +763,7 @@ public class videolist extends Activity {
             byte[] ba = bao.toByteArray();
 
             String ba1 = Base64.encodeToString(ba, Base64.DEFAULT);
-            is = new ByteArrayInputStream(bao.toByteArray());
+            is=new ByteArrayInputStream(bao.toByteArray());
             ArrayList<BasicNameValuePair> nameValuePairs = new ArrayList<BasicNameValuePair>();
             nameValuePairs.add(new BasicNameValuePair("image", ba1));
             nameValuePairs.add(new BasicNameValuePair("cmd", "image_android"));
@@ -733,20 +774,23 @@ public class videolist extends Activity {
             MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
 
             reqEntity.addPart("myFile",
-                    deviceId + ".jpg", is);
+                    deviceId+ ".jpg", is);
 
             //FileBody bin = new FileBody(new File("C:/ABC.txt"));
 
 
-            String uploadurl = "http://torqkd.com/user/ajs/AddTempTable";
-            if (uploadtype.matches("group")) {
-                uploadurl = "http://torqkd.com/user/ajs/groupimage";
+
+
+
+            String uploadurl="http://torqkd.com/user/ajs/AddTempTable";
+            if(uploadtype.matches("group")){
+                uploadurl="http://torqkd.com/user/ajs/groupimage";
             }
-            if (uploadtype.matches("editp")) {
-                uploadurl = "http://torqkd.com/user/ajs/profileimage";
+            if(uploadtype.matches("editp")){
+                uploadurl="http://torqkd.com/user/ajs/profileimage";
             }
-            if (uploadtype.matches("editpb")) {
-                uploadurl = "http://torqkd.com/user/ajs/profileimagebg";
+            if(uploadtype.matches("editpb")){
+                uploadurl="http://torqkd.com/user/ajs/profileimagebg";
             }
 
 
@@ -792,7 +836,43 @@ public class videolist extends Activity {
             }
         }
 
+        public class GifView extends WebView {
+
+            /**
+             * @param context
+             * @param attrs
+             */
+            public GifView(Context context, AttributeSet attrs) {
+                super(context, attrs);
+                setClickable(false);
+                setFocusable(false);
+                setFocusableInTouchMode(false);
+                setLongClickable(false);
+
+            }
+
+            // actions
+
+        }
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

@@ -53,13 +53,12 @@
         </activity>
         <activity android:name="com.torkqd.cameraActivity" >
         </activity>
+        <activity android:name="com.torkqd.uploadv" >
+        </activity>
         <activity android:name="com.torkqd.upload" >
         </activity>
-        <activity
-            android:name="com.torkqd.videoActivity"
-            android:screenOrientation="landscape" >
+        <activity android:name="com.torkqd.videoActivity" >
         </activity>
-        <activity android:name="com.torkqd.videolist" />
         <activity android:name="com.torkqd.videoplayerActivity" >
         </activity>
         <activity

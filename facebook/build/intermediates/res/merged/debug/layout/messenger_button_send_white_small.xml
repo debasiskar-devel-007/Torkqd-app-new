@@ -26,4 +26,4 @@
         style="@style/MessengerButtonText.White.Small"
         android:text="@string/messenger_send_button_text" />
 </FrameLayout>
-<!-- From: file:/F:/androidp/Torkqd-app-master/facebook/res/layout/messenger_button_send_white_small.xml -->
+<!-- From: file:/E:/Android/projects/Torkqd-app-new/facebook/res/layout/messenger_button_send_white_small.xml -->

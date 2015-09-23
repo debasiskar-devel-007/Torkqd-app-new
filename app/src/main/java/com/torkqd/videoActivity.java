@@ -124,14 +124,14 @@ public class videoActivity extends Activity {
                     Toast.makeText(getApplicationContext(), "height="+videoHeight+"width="+videoWidth,
                             Toast.LENGTH_LONG).show();*/
 
-                    orientation=getResources().getConfiguration().orientation;
+                    /*orientation=getResources().getConfiguration().orientation;
                     Toast.makeText(getApplicationContext(), "orientation="+orientation,
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_LONG).show();*/
 
                     //Activity.getResources().getConfiguration().orientation
 
-                    dialog = ProgressDialog.show(videoActivity.this,
-                            "Uploading", "Please wait , It may take few minutes ...", true);
+                   /* dialog = ProgressDialog.show(videoActivity.this,
+                            "Uploading", "Please wait , It may take few minutes ...", true);*/
                     new VideoUploadTask().execute();
 
                     SystemClock.sleep(1000);
@@ -139,6 +139,14 @@ public class videoActivity extends Activity {
 
                     new VideoUploadTaskupdatelocation().execute();
                     new VideoUploadTaskfull().execute();
+                    Context context = videoActivity.this;
+
+                    Intent cameraintent = new Intent(context, MainActivity.class);
+                    cameraintent.putExtra("vlocalfileuril", fileuri);
+
+                    // Launch default browser
+
+                    context.startActivity(cameraintent);
 
 
                 }
@@ -670,8 +678,8 @@ public class videoActivity extends Activity {
         @Override
         protected void onPostExecute(String sResponse) {
             try {
-                if (dialog.isShowing())
-                    dialog.dismiss();
+                /*if (dialog.isShowing())
+                    dialog.dismiss();*/
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), e.getMessage(),
                         Toast.LENGTH_LONG).show();
@@ -764,8 +772,8 @@ public class videoActivity extends Activity {
         @Override
         protected void onPostExecute(String sResponse) {
             try {
-                if (dialog.isShowing())
-                    dialog.dismiss();
+                /*if (dialog.isShowing())
+                    dialog.dismiss();*/
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), e.getMessage(),
                         Toast.LENGTH_LONG).show();
@@ -852,14 +860,7 @@ public class videoActivity extends Activity {
                 //is = entity.getContent();
 
 
-                Context context = videoActivity.this;
 
-                Intent cameraintent = new Intent(context, MainActivity.class);
-                cameraintent.putExtra("vlocalfileuril", fileuri);
-
-                // Launch default browser
-
-                context.startActivity(cameraintent);
                 Log.v("log_tag", "In the try Loop");
             } catch (Exception e) {
                 Log.v("log_tag", "Error in http connection " + e.toString());
@@ -877,8 +878,8 @@ public class videoActivity extends Activity {
         @Override
         protected void onPostExecute(String sResponse) {
             try {
-                if (dialog.isShowing())
-                    dialog.dismiss();
+                /*if (dialog.isShowing())
+                    dialog.dismiss();*/
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), e.getMessage(),
                         Toast.LENGTH_LONG).show();
@@ -955,8 +956,8 @@ public class videoActivity extends Activity {
         @Override
         protected void onPostExecute(String sResponse) {
             try {
-                if (dialog.isShowing())
-                    dialog.dismiss();
+               /* if (dialog.isShowing())
+                    dialog.dismiss();*/
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), e.getMessage(),
                         Toast.LENGTH_LONG).show();

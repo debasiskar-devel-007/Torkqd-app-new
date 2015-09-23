@@ -2,74 +2,74 @@
 <items version="2" >
 
     <item
-        jar="F:\androidp\Torkqd-app-master\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="F:\androidp\Torkqd-app-master\app\build\intermediates\pre-dexed\release\classes-95c654b3aaa3c38ac3751c55246a753e9f2c1139.jar" />
-    </item>
-    <item
-        jar="C:\Users\Papai\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpmime\4.2.3\118ae1bc7f3aeeddfe564f0edfd79c11d09d17d1\httpmime-4.2.3.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="118ae1bc7f3aeeddfe564f0edfd79c11d09d17d1">
-        <dex dex="F:\androidp\Torkqd-app-master\app\build\intermediates\pre-dexed\release\httpmime-4.2.3-824d2156069244ee336e7c7d3e2bea9fa6ae07df.jar" />
-    </item>
-    <item
-        jar="F:\androidp\Torkqd-app-master\app\build\intermediates\exploded-aar\com.astuetz\pagerslidingtabstrip\1.0.1\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="7912610ed96381c25c36d986eba422731b9641b6">
-        <dex dex="F:\androidp\Torkqd-app-master\app\build\intermediates\pre-dexed\release\classes-ef7b8e3fdd02ff59a7bc72183cbbebe9b29638ff.jar" />
-    </item>
-    <item
-        jar="F:\androidp\Torkqd-app-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="F:\androidp\Torkqd-app-master\app\build\intermediates\pre-dexed\release\classes-e5a1abdb972e92df41cbae85a18a13ba329cce4e.jar" />
-    </item>
-    <item
-        jar="E:\android sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jar="E:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="F:\androidp\Torkqd-app-master\app\build\intermediates\pre-dexed\release\support-annotations-21.0.3-c93462fce428468a621baed0462918f2c90b01ea.jar" />
+        <dex dex="E:\Android\projects\Torkqd-app-new\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-704a340b9af7bcb3c02ad95d5aa67056e7d6206d.jar" />
     </item>
     <item
-        jar="F:\androidp\Torkqd-app-master\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a78bfd2ec508b123ee7c03f4006ba7996ef9a8dc">
-        <dex dex="F:\androidp\Torkqd-app-master\app\build\intermediates\pre-dexed\release\classes-694d68ce7d3b728526f4065c9f3b5258fc9bb64d.jar" />
-    </item>
-    <item
-        jar="C:\Users\Papai\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
-        <dex dex="F:\androidp\Torkqd-app-master\app\build\intermediates\pre-dexed\release\bolts-android-1.2.0-b96ab536c466567bd97547b6b2c597d35b58f1d4.jar" />
-    </item>
-    <item
-        jar="F:\androidp\Torkqd-app-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\libs\internal_impl-21.0.3.jar"
+        jar="E:\Android\projects\Torkqd-app-new\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="F:\androidp\Torkqd-app-master\app\build\intermediates\pre-dexed\release\internal_impl-21.0.3-9045b338798db4cba62777a23164648a4165ae41.jar" />
+        <dex dex="E:\Android\projects\Torkqd-app-new\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-8918f9316ced315c58bd5c604f1520296cf07aad.jar" />
     </item>
     <item
-        jar="C:\Users\Papai\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.2.2\b76bee23cd3f3ee9b98bc7c2c14670e821ddbbfd\httpcore-4.2.2.jar"
+        jar="C:\Users\Samsuj-PC\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="E:\Android\projects\Torkqd-app-new\app\build\intermediates\pre-dexed\debug\bolts-android-1.2.0-e1e5de83cb5c1551d485d2c2850567b41273041d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Samsuj-PC\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpmime\4.2.3\118ae1bc7f3aeeddfe564f0edfd79c11d09d17d1\httpmime-4.2.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="118ae1bc7f3aeeddfe564f0edfd79c11d09d17d1">
+        <dex dex="E:\Android\projects\Torkqd-app-new\app\build\intermediates\pre-dexed\debug\httpmime-4.2.3-6ecf7d12855033812397d7f175a3ac3baebd2881.jar" />
+    </item>
+    <item
+        jar="E:\Android\projects\Torkqd-app-new\app\build\intermediates\exploded-aar\com.astuetz\pagerslidingtabstrip\1.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7912610ed96381c25c36d986eba422731b9641b6">
+        <dex dex="E:\Android\projects\Torkqd-app-new\app\build\intermediates\pre-dexed\debug\classes-ee96c141c8a9607e305a2f12ccb532931b4d4d56.jar" />
+    </item>
+    <item
+        jar="E:\Android\projects\Torkqd-app-new\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a78bfd2ec508b123ee7c03f4006ba7996ef9a8dc">
+        <dex dex="E:\Android\projects\Torkqd-app-new\app\build\intermediates\pre-dexed\debug\classes-6d410b0f3a9bcef08bc1bfefb2aeb9afaf414d56.jar" />
+    </item>
+    <item
+        jar="C:\Users\Samsuj-PC\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.2.2\b76bee23cd3f3ee9b98bc7c2c14670e821ddbbfd\httpcore-4.2.2.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="b76bee23cd3f3ee9b98bc7c2c14670e821ddbbfd">
-        <dex dex="F:\androidp\Torkqd-app-master\app\build\intermediates\pre-dexed\release\httpcore-4.2.2-91cf12c5e30ab0ecacb72208ab993936506d312d.jar" />
+        <dex dex="E:\Android\projects\Torkqd-app-new\app\build\intermediates\pre-dexed\debug\httpcore-4.2.2-884971271900cf1b7b6cf1e340982b98967bff16.jar" />
     </item>
     <item
-        jar="C:\Users\Papai\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-lang3\3.0\8873bd0bb5cb9ee37f1b04578eb7e26fcdd44cb0\commons-lang3-3.0.jar"
+        jar="C:\Users\Samsuj-PC\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-lang3\3.0\8873bd0bb5cb9ee37f1b04578eb7e26fcdd44cb0\commons-lang3-3.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="8873bd0bb5cb9ee37f1b04578eb7e26fcdd44cb0">
-        <dex dex="F:\androidp\Torkqd-app-master\app\build\intermediates\pre-dexed\release\commons-lang3-3.0-0c5d5c20a5b8280506eef68bc47925a404f22677.jar" />
+        <dex dex="E:\Android\projects\Torkqd-app-new\app\build\intermediates\pre-dexed\debug\commons-lang3-3.0-057e3a3e2d85dd018b37abf64934442edf4c5c5d.jar" />
+    </item>
+    <item
+        jar="E:\Android\projects\Torkqd-app-new\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="E:\Android\projects\Torkqd-app-new\app\build\intermediates\pre-dexed\debug\classes-8527b6a8af1e39fb73508faccd2aabb7966b1e2f.jar" />
+    </item>
+    <item
+        jar="E:\Android\projects\Torkqd-app-new\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="E:\Android\projects\Torkqd-app-new\app\build\intermediates\pre-dexed\debug\classes-63cd0f69d276b751800d4b159c66b6fa40584aa2.jar" />
     </item>
 
 </items>

@@ -8,4 +8,4 @@
         android:layout_width="@dimen/texture_view_width"
         android:layout_height="@dimen/texture_view_height"
         android:layout_centerInParent="true"/>
-</RelativeLayout><!-- From: file:/F:/androidp/Torkqd-app-master/app/src/main/res/layout/texture.xml -->
+</RelativeLayout><!-- From: file:/E:/Android/projects/Torkqd-app-new/app/src/main/res/layout/texture.xml -->

@@ -18,9 +18,7 @@
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:scaleType="centerCrop"
-        android:onClick="opencamera"
-        android:background="@color/accent_material_dark"
-        android:visibility="visible"/>
+       />
 
     <ImageView
         android:id="@+id/image"
@@ -32,7 +30,7 @@
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:scaleType="centerCrop"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 
 
     <ImageView
@@ -50,6 +48,7 @@
         android:visibility="gone"
         android:scaleType="centerCrop"
         android:src="@drawable/stub"
+
          />
 
 
@@ -78,10 +77,10 @@
         android:textSize="12sp"
         android:visibility="invisible" />
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:id="@+id/buttons"
         android:text="select"/>
 
 
-</RelativeLayout><!-- From: file:/F:/androidp/Torkqd-app-master/app/src/main/res/layout/grid_item_layout.xml -->
+</RelativeLayout><!-- From: file:/E:/Android/projects/Torkqd-app-new/app/src/main/res/layout/grid_item_layout.xml -->

@@ -151,7 +151,7 @@ activity#com.torkqd.videoActivity
 ADDED from AndroidManifest.xml:71:9
 	android:name
 		ADDED from AndroidManifest.xml:72:13
-activity#com.torkqd.videolist
+activity#com.torkqd.videolistold
 ADDED from AndroidManifest.xml:75:9
 	android:name
 		ADDED from AndroidManifest.xml:76:13

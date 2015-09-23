@@ -19,6 +19,7 @@ import android.view.Window;
 import android.webkit.GeolocationPermissions;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.widget.Button;
@@ -349,6 +350,8 @@ public class MainActivity extends Activity implements LocationListener {
         myWebView.getSettings().setGeolocationDatabasePath(context.getFilesDir().getPath());
         myWebView.getSettings().setLoadWithOverviewMode(true);
         myWebView.getSettings().setUseWideViewPort(true);
+        myWebView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+
         myWebView.setWebChromeClient(new WebChromeClient() {
             public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
                 callback.invoke(origin, true, false);

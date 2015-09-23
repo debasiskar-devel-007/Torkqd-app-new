@@ -59,7 +59,7 @@
             android:name="com.torkqd.videoActivity"
             android:screenOrientation="landscape" >
         </activity>
-        <activity android:name="com.torkqd.videolist" />
+        <activity android:name="com.torkqd.videolistold" />
         <activity android:name="com.torkqd.videoplayerActivity" >
         </activity>
         <activity

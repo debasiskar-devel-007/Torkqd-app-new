@@ -181,7 +181,7 @@ public class upload extends Activity {
 
 
     }
-    public static void startuploader1(String url){
+    public static void startuploader1(Context context ,String url){
 
 
         upload nup=new upload();
@@ -373,13 +373,24 @@ public class upload extends Activity {
                 /*Toast.makeText(getApplicationContext(), "/ createdtime=" + tf.lastModified(),
                         Toast.LENGTH_LONG).show();*/
 
-                if (!Arrays.asList(fnamelLst).contains(tf.getName())) {
-                    flLst.add(tf.getAbsolutePath());
-                    //filecreatdtimelist.add(tf.lastModified());
-                    fnamelLst.add(tf.getName());
 
 
-                }
+
+
+                        if (!Arrays.asList(fnamelLst).contains(tf.getName())) {
+                            flLst.add(tf.getAbsolutePath());
+                            //filecreatdtimelist.add(tf.lastModified());
+                            fnamelLst.add(tf.getName());
+
+
+                        }
+
+
+
+
+
+
+
 
             }
         }
@@ -417,12 +428,22 @@ public class upload extends Activity {
                         f.getName().contains(".MP4")
                         ) {
 
-                    if (!Arrays.asList(fnamelLst).contains(f.getName())) {
-                        flLst.add(f.getAbsolutePath());
-                        fnamelLst.add(f.getName());
 
 
-                    }
+
+
+                            if (!Arrays.asList(fnamelLst).contains(f.getName())) {
+                                flLst.add(f.getAbsolutePath());
+                                //filecreatdtimelist.add(tf.lastModified());
+                                fnamelLst.add(f.getName());
+
+
+
+
+                        }
+
+
+
                 }
 
 

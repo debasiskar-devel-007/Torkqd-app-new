@@ -104,9 +104,14 @@ public class cameraActivity extends Activity {
                     Toast.makeText(getApplicationContext(),
                             "Please select image", Toast.LENGTH_SHORT).show();
                 } else {
-                    dialog = ProgressDialog.show(cameraActivity.this,
-                            "Uploading", "Please wait...", true);
+                    /*dialog = ProgressDialog.show(cameraActivity.this,
+                            "Uploading", "Please wait...", true);*/
                     new ImageUploadTask().execute();
+                    Context context = cameraActivity.this;
+                    Intent cameraintent = new Intent(context, MainActivity.class);
+
+                    // Launch default browser
+                    context.startActivity(cameraintent);
                 }
             }
         });
@@ -457,11 +462,7 @@ public class cameraActivity extends Activity {
                 HttpEntity entity = response.getEntity();
                 is = entity.getContent();
 
-                Context context = cameraActivity.this;
-                Intent cameraintent = new Intent(context, MainActivity.class);
 
-                // Launch default browser
-                context.startActivity(cameraintent);
                 Log.v("log_tag", "In the try Loop");
             } catch (Exception e) {
                 Log.v("log_tag", "Error in http connection " + e.toString());
@@ -478,8 +479,8 @@ public class cameraActivity extends Activity {
         @Override
         protected void onPostExecute(String sResponse) {
             try {
-                if (dialog.isShowing())
-                    dialog.dismiss();
+               /* if (dialog.isShowing())
+                    dialog.dismiss();*/
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), e.getMessage(),
                         Toast.LENGTH_LONG).show();
