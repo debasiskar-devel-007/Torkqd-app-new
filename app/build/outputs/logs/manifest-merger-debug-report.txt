@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:2:1-102:12
+ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:2:1-104:12
 	package
 		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:3:5-25
 		INJECTED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml
@@ -83,7 +83,7 @@ ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:3
 	android:name
 		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:32:22-72
 application
-ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:35:5-97:19
+ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:35:5-99:19
 MERGED from [com.android.support:appcompat-v7:21.0.3] E:\Android\projects\Torkqd-app-new\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\AndroidManifest.xml:16:5-19
 MERGED from [com.android.support:support-v4:21.0.3] E:\Android\projects\Torkqd-app-new\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
 MERGED from [com.android.support:support-v4:21.0.3] E:\Android\projects\Torkqd-app-new\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
@@ -143,51 +143,49 @@ activity#com.torkqd.cameraActivity
 ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:65:9-67:20
 	android:name
 		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:66:13-43
-activity#com.torkqd.upload
+activity#com.torkqd.uploadv
 ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:68:9-70:20
 	android:name
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:69:13-35
-activity#com.torkqd.videoActivity
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:69:13-36
+activity#com.torkqd.upload
 ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:71:9-73:20
-	android:screenOrientation
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:72:43-80
 	android:name
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:72:13-42
-activity#com.torkqd.videolistold
-ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:75:9-59
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:72:13-35
+activity#com.torkqd.videoActivity
+ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:74:9-76:20
 	android:name
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:75:19-47
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:75:13-42
 activity#com.torkqd.videoplayerActivity
-ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:76:9-77:20
+ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:78:9-79:20
 	android:name
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:76:19-54
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:78:19-54
 activity#com.torkqd.HelloFacebookSampleActivity
-ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:80:9-84:20
+ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:82:9-86:20
 	android:label
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:81:13-45
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:83:13-45
 	android:windowSoftInputMode
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:82:13-55
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:84:13-55
 	android:name
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:80:19-72
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:82:19-72
 activity#com.facebook.FacebookActivity
-ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:86:9-89:75
+ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:88:9-91:75
 	android:label
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:88:13-45
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:90:13-45
 	android:configChanges
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:87:13-96
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:89:13-96
 	android:theme
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:89:13-72
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:91:13-72
 	android:name
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:86:19-63
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:88:19-63
 meta-data#com.facebook.sdk.ApplicationId
-ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:90:9-98
+ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:92:9-98
 	android:value
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:90:66-96
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:92:66-96
 	android:name
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:90:20-65
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:92:20-65
 meta-data#com.facebook.sdk.ApplicationName
-ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:91:9-92:57
+ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:93:9-94:57
 	android:value
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:92:13-54
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:94:13-54
 	android:name
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:91:20-67
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:93:20-67

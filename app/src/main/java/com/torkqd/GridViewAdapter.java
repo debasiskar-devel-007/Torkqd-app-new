@@ -113,6 +113,105 @@ public class GridViewAdapter extends ArrayAdapter {
 
 
 
+        holder.web.setOnTouchListener(new View.OnTouchListener() {
+
+            public final static int FINGER_RELEASED = 0;
+            public final static int FINGER_TOUCHED = 1;
+            public final static int FINGER_DRAGGING = 2;
+            public final static int FINGER_UNDEFINED = 3;
+
+            private int fingerState = FINGER_RELEASED;
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+               /* Toast.makeText(context, "/ clicked?=" + fileName,
+                        Toast.LENGTH_LONG).show();*/
+                long TheImpactPoint=0;
+
+                switch (motionEvent.getAction()) {
+
+                    case MotionEvent.ACTION_DOWN:
+                        if (fingerState == FINGER_RELEASED) {
+                            fingerState = FINGER_TOUCHED;
+
+                            TheImpactPoint= (long) motionEvent.getX();
+                            /*Toast.makeText(context, "/ touched then relaesed?=" + fileName,
+                                    Toast.LENGTH_LONG).show();*/
+                        }
+                        else fingerState = FINGER_UNDEFINED;
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        if(fingerState != FINGER_DRAGGING) {
+                            fingerState = FINGER_RELEASED;
+
+
+                            if (fileName.contains(".mp4") || fileName.contains(".MP4")) {
+
+                                fileuri = fileName;
+                                new VideoUploadTask().execute();
+
+                                SystemClock.sleep(1000);
+
+
+                                new VideoUploadTaskupdatelocation().execute();
+                                new VideoUploadTaskfull().execute();
+
+
+                                Context context = getContext();
+
+                                Intent cameraintent = new Intent(context, MainActivity.class);
+                                cameraintent.putExtra("vlocalfileuril", fileuri);
+
+                                // Launch default browser
+
+                                context.startActivity(cameraintent);
+
+
+                            } else {
+
+                                decodeFile(fileName);
+                                SystemClock.sleep(1000);
+                                new ImageUploadTask().execute();
+                                Context contextc = getContext();
+                                Intent cameraintent = new Intent(contextc, MainActivity.class);
+
+
+                                // Launch default browser
+                                contextc.startActivity(cameraintent);
+
+                            }
+
+                        }
+
+
+                            // Your onClick codes
+
+                        //}
+                        else if (fingerState == FINGER_DRAGGING) {
+                            fingerState = FINGER_RELEASED;
+                           /* Toast.makeText(context, "/ dragged?=" + fileName,
+                                    Toast.LENGTH_LONG).show();*/
+                        }
+                        else fingerState = FINGER_UNDEFINED;
+                        break;
+
+                    case MotionEvent.ACTION_MOVE:
+                        if (fingerState == FINGER_TOUCHED || fingerState == FINGER_DRAGGING) {
+                            fingerState = FINGER_DRAGGING;
+                            /*Toast.makeText(context, "/ move n drag?=" + fileName,
+                                    Toast.LENGTH_LONG).show();*/
+                        }
+                        else fingerState = FINGER_UNDEFINED;
+                        break;
+
+                    default:
+                        fingerState = FINGER_UNDEFINED;
+
+                }
+
+                return false;
+            }
+        });
 
         holder.but.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +289,7 @@ public class GridViewAdapter extends ArrayAdapter {
             //loadImage(fileName, holder.image);
             image = holder.image;
             loadericon = holder.loadericon;
+            //loadericon.setVisibility(View.VISIBLE);
             url = fileName;
 
 
