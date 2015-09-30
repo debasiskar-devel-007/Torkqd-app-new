@@ -6,6 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
 
+
     >
 
     <com.torkqd.GifView
@@ -80,6 +81,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/buttons"
+        android:visibility="gone"
         android:text="select"/>
 
 

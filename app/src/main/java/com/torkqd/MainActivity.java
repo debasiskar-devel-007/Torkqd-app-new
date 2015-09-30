@@ -23,7 +23,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
@@ -61,6 +63,8 @@ public class MainActivity extends Activity implements LocationListener {
     List<String> fnamelLst = new ArrayList<String>();
     String state = Environment.getExternalStorageState();
     List<String> ls;
+    private ImageView loaderImg;
+    private ProgressBar pLoader;
 
 
     private final static Object methodInvoke(Object obj, String method,
@@ -80,6 +84,7 @@ public class MainActivity extends Activity implements LocationListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		this.requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_main);
         file = Environment.getExternalStorageDirectory();
         ls=getFilePaths();
@@ -87,12 +92,19 @@ public class MainActivity extends Activity implements LocationListener {
             // in standard case YourActivity.this
             progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.setMessage("Loading...");
-            progressDialog.show();
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progressDialog.setIndeterminate(true);
+           // progressDialog.show();
         }
 		// turnGPSOn();
 		// turnGPSOn();
 
 		myWebView = (WebView) findViewById(R.id.webView1);
+		loaderImg = (ImageView) findViewById(R.id.loader);
+        pLoader = (ProgressBar) findViewById(R.id.pbHeaderProgress);
+
+        pLoader.getIndeterminateDrawable().setColorFilter(0xFFFF971B, android.graphics.PorterDuff.Mode.MULTIPLY);
+
         myWebView.getSettings().setJavaScriptEnabled(true);
 
         myWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
@@ -415,7 +427,8 @@ public class MainActivity extends Activity implements LocationListener {
         final Activity activity = this;
 
 
-		myWebView.setWebChromeClient(new WebChromeClient() {
+		myWebView.setWebChromeClient(new WebChromeClient()
+        {
 
 
 
@@ -425,7 +438,12 @@ public class MainActivity extends Activity implements LocationListener {
                 // Activities and WebViews measure progress with different scales.
                 // The progress meter will automatically disappear when we reach 100%
                 //activity.setProgress(progress * 1000);
-                if (progress > 65) {
+                progressDialog.setProgress(progress);
+                if (progress > 90) {
+
+                    loaderImg.setVisibility(view.GONE);
+                    pLoader.setVisibility(view.GONE);
+                    myWebView.setVisibility(view.VISIBLE);
 
                     try {
                         if (progressDialog.isShowing()) {
@@ -438,7 +456,12 @@ public class MainActivity extends Activity implements LocationListener {
 
                    //
                 }
-                if(progress < 65){
+                if(progress < 90 && myWebView.getVisibility() == view.GONE){
+
+                    myWebView.setVisibility(view.GONE);
+                    loaderImg.setVisibility(view.VISIBLE);
+                    pLoader.setVisibility(view.VISIBLE);
+
 
                     if (progressDialog == null) {
                         // in standard case YourActivity.this

@@ -96,7 +96,7 @@ MERGED from [com.android.support:support-v4:21.0.3] E:\Android\projects\Torkqd-a
 	android:allowBackup
 		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:36:9-35
 	android:icon
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:37:9-45
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:37:9-48
 	android:theme
 		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:39:9-40
 activity#com.torkqd.MainActivity
