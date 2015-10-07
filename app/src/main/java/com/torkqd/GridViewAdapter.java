@@ -299,6 +299,14 @@ public class GridViewAdapter extends ArrayAdapter {
             if (!folder.exists()) {
                 success = folder.mkdir();
             }
+            String[] myFiles;
+
+
+            myFiles = folder.list();
+            for (int i=0; i<myFiles.length; i++) {
+                File myFile = new File(folder, myFiles[i]);
+                myFile.delete();
+            }
 
             String path = Environment.getExternalStorageDirectory().toString();
             OutputStream fOut = null;

@@ -63,6 +63,7 @@ public class upload extends Activity {
     ArrayList<ImageItem> resultIAV = new ArrayList<>();
     String state = Environment.getExternalStorageState();
     List<String> flLst = new ArrayList<String>();
+    List<String> vflLst = new ArrayList<String>();
     List<String> fnamelLst = new ArrayList<String>();
     int dircount;
     String[] thumbColumns = {MediaStore.Video.Thumbnails.DATA, MediaStore.Video.Thumbnails.VIDEO_ID};
@@ -351,7 +352,7 @@ public class upload extends Activity {
                 int count = StringUtils.countMatches(tf.getAbsolutePath(), "/");
                /* Toast.makeText(getApplicationContext(), "/ count=" + count,
                         Toast.LENGTH_LONG).show();*/
-                if (count < (dircount + 3)) populatefilelist(tf.getAbsolutePath());
+                if (count < (dircount + 3) && tf.getName().contains("thumbnails")) populatefilelist(tf.getAbsolutePath());
             } else filetype = "file";
         /*Toast.makeText(getApplicationContext(),"filename="+ tf.getName()+"filetype="+filetype+"getabspath="+tf.getAbsolutePath(),
                 Toast.LENGTH_LONG).show();*/
@@ -364,9 +365,9 @@ public class upload extends Activity {
                     tf.getName().contains(".bmp") ||
                     tf.getName().contains(".BMP") ||
                     tf.getName().contains(".GIF") ||
-                    tf.getName().contains(".gif") ||
-                    tf.getName().contains(".mp4") ||
-                    tf.getName().contains(".MP4")
+                    tf.getName().contains(".gif") //||
+                   // tf.getName().contains(".mp4") ||
+                    //tf.getName().contains(".MP4")
                     ) {
 
 
@@ -384,6 +385,36 @@ public class upload extends Activity {
 
 
                         }
+
+
+
+
+
+
+
+
+            }
+
+
+            if ( tf.getName().contains(".mp4") ||
+                tf.getName().contains(".MP4")
+                    ) {
+
+
+                /*Toast.makeText(getApplicationContext(), "/ createdtime=" + tf.lastModified(),
+                        Toast.LENGTH_LONG).show();*/
+
+
+
+
+
+                if (!Arrays.asList(fnamelLst).contains(tf.getName())) {
+                    vflLst.add(tf.getAbsolutePath());
+                    //filecreatdtimelist.add(tf.lastModified());
+                    fnamelLst.add(tf.getName());
+
+
+                }
 
 
 
@@ -414,6 +445,10 @@ public class upload extends Activity {
                 } else filetype = "file";
                 /* Toast.makeText(getApplicationContext(),"filename="+ f.getName()+"filetype="+filetype+"getabspath="+f.getAbsolutePath(),
                         Toast.LENGTH_LONG).show();*/
+
+
+
+
                 if (f.getName().contains(".JPEG") ||
                         f.getName().contains(".jpeg") ||
                         f.getName().contains(".png") ||
@@ -423,9 +458,9 @@ public class upload extends Activity {
                         f.getName().contains(".bmp") ||
                         f.getName().contains(".BMP") ||
                         f.getName().contains(".GIF") ||
-                        f.getName().contains(".gif") ||
-                        f.getName().contains(".mp4") ||
-                        f.getName().contains(".MP4")
+                        f.getName().contains(".gif") //||
+                        //f.getName().contains(".mp4") ||
+                        //f.getName().contains(".MP4")
                         ) {
 
 
@@ -447,10 +482,36 @@ public class upload extends Activity {
                 }
 
 
+                if (
+                    f.getName().contains(".mp4") ||
+                    f.getName().contains(".MP4")
+                        ) {
+
+
+
+
+
+                    if (!Arrays.asList(fnamelLst).contains(f.getName())) {
+                        vflLst.add(f.getAbsolutePath());
+                        //filecreatdtimelist.add(tf.lastModified());
+                        fnamelLst.add(f.getName());
+
+
+
+
+                    }
+
+
+
+                }
+
+
             }
         }
 
-        Collections.reverse(flLst);
+        //flLst.addAll(vflLst);
+
+        //Collections.reverse(flLst);
 
 
         return flLst;
