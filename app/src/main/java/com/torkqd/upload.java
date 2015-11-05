@@ -20,6 +20,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
@@ -146,7 +147,6 @@ public class upload extends Activity {
                         Toast.LENGTH_LONG).show();
 
 
-
                 dialog = ProgressDialog.show(upload.this,
                         "Uploading", "Please wait...", true);
                 if (prompt.contains(".mp4") || prompt.contains(".MP4")) {
@@ -175,6 +175,33 @@ public class upload extends Activity {
 
                 //Start details activity
                 startActivity(intent);*/
+            }
+        });
+
+
+        gridView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView listView, int scrollState) {
+                // Pause disk cache access to ensure smoother scrolling
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
+                    //imageLoader.stopProcessingQueue();
+                    Toast.makeText(getApplicationContext(), "Equal State",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                   // imageLoader.startProcessingQueue();
+                    Toast.makeText(getApplicationContext(), "Not equal state",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                // TODO Auto-generated method stub
+                Toast.makeText(getApplicationContext(), "firstVisibleItem :"+firstVisibleItem+", visibleItemCount :"+visibleItemCount+" , totalItemCount: "+totalItemCount,
+                        Toast.LENGTH_LONG).show();
+                for(int i = firstVisibleItem; i<visibleItemCount; i++){
+                    gridView.getChildAt(i).setVisibility(view.VISIBLE);
+                }
             }
         });
 
@@ -509,7 +536,7 @@ public class upload extends Activity {
             }
         }
 
-        //flLst.addAll(vflLst);
+        flLst.addAll(vflLst);
 
         //Collections.reverse(flLst);
 

@@ -2,9 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_gravity="center"
-    android:gravity="center"
+    android:layout_gravity="fill"
+    android:gravity="fill"
     android:orientation="vertical"
+    android:background="@color/white"
+
 
 
 
@@ -15,11 +17,10 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginTop="5dp"
+        android:layout_margin="-10dp"
         android:gravity="center"
         android:scaleType="centerCrop"
+
        />
 
     <ImageView
@@ -68,12 +69,12 @@
         android:gravity="center"
         android:scaleType="centerCrop"
         android:src="@drawable/playsmall"
-        android:visibility="invisible" />
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/text"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="12sp"

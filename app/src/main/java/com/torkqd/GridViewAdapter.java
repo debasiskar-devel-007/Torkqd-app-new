@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.SystemClock;
@@ -342,16 +344,20 @@ public class GridViewAdapter extends ArrayAdapter {
 
 
 
+            holder.image.setImageURI(Uri.parse(fileName));
+
+            Resources res = context.getResources();
+            holder.image.setImageDrawable(res.getDrawable(R.drawable.stub));
 
             String html = new String();
             final String URI_PREFIX = "file://";
             html = ("<html><body><img height=150px width=150px src=\""+URI_PREFIX+folder+file+ "\" align=left></body></html>");
 
-            web.loadDataWithBaseURL(URI_PREFIX,
+            /*web.loadDataWithBaseURL(URI_PREFIX,
                     html,
                     "text/html",
                     "utf-8",
-                    "");
+                    "");*/
 
 
 
@@ -393,15 +399,20 @@ public class GridViewAdapter extends ArrayAdapter {
 
             // holder.image.setImageURI(Uri.parse(fileName));
 
+            holder.image.setImageURI(Uri.parse(fileName));
+
+            Resources res = context.getResources();
+            holder.image.setImageDrawable(res.getDrawable(R.drawable.stub));
+
             String html = new String();
             final String URI_PREFIX = "file://";
             html = ("<html><body><img height=150px width=150px src=\""+URI_PREFIX+url+ "\" align=left></body></html>");
 
-            web.loadDataWithBaseURL(URI_PREFIX,
+            /*web.loadDataWithBaseURL(URI_PREFIX,
                     html,
                     "text/html",
                     "utf-8",
-                    "");
+                    "");*/
 
         }
         return row;

@@ -26,7 +26,11 @@
         android:scaleType="fitCenter"
 
 
-        android:stretchMode="columnWidth" />
+        android:stretchMode="columnWidth"
+        android:smoothScrollbar="true"
+        android:scrollingCache="false"
+        android:animationCache="false"
+        />
 
     <RelativeLayout
         android:id="@+id/imguploadtbar"
