@@ -339,19 +339,26 @@ public class GridViewAdapter extends ArrayAdapter {
             }
 
 
-            //imageLoader.DisplayImage(fileName, image,1);
-           // new loadvideothumb().execute();
+
+             /*Toast.makeText(context, "/ vfile=" + fileName,
+                    Toast.LENGTH_LONG).show();*/
+            try {
+                imageLoader.DisplayImage(file.getAbsolutePath(), image,2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            // new loadvideothumb().execute();
 
 
 
-            holder.image.setImageURI(Uri.parse(fileName));
+           /* holder.image.setImageURI(Uri.parse(fileName));
 
             Resources res = context.getResources();
-            holder.image.setImageDrawable(res.getDrawable(R.drawable.stub));
+            holder.image.setImageDrawable(res.getDrawable(R.drawable.stub));*/
 
-            String html = new String();
+           /* String html = new String();
             final String URI_PREFIX = "file://";
-            html = ("<html><body><img height=150px width=150px src=\""+URI_PREFIX+folder+file+ "\" align=left></body></html>");
+            html = ("<html><body><img height=150px width=150px src=\""+URI_PREFIX+folder+file+ "\" align=left></body></html>");*/
 
             /*web.loadDataWithBaseURL(URI_PREFIX,
                     html,
@@ -388,7 +395,11 @@ public class GridViewAdapter extends ArrayAdapter {
             image = holder.image;
             web = holder.web;
             loadericon = holder.loadericon;
-            //imageLoader.DisplayImage(fileName, image,2);
+            try {
+                imageLoader.DisplayImage(fileName, image,2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
 
             /*Toast.makeText(context, "/ html=" + html,
@@ -399,14 +410,14 @@ public class GridViewAdapter extends ArrayAdapter {
 
             // holder.image.setImageURI(Uri.parse(fileName));
 
-            holder.image.setImageURI(Uri.parse(fileName));
+           // holder.image.setImageURI(Uri.parse(fileName));
 
-            Resources res = context.getResources();
-            holder.image.setImageDrawable(res.getDrawable(R.drawable.stub));
+            //Resources res = context.getResources();
+            //holder.image.setImageDrawable(res.getDrawable(R.drawable.stub));
 
-            String html = new String();
+            /*String html = new String();
             final String URI_PREFIX = "file://";
-            html = ("<html><body><img height=150px width=150px src=\""+URI_PREFIX+url+ "\" align=left></body></html>");
+            html = ("<html><body><img height=150px width=150px src=\""+URI_PREFIX+url+ "\" align=left></body></html>");*/
 
             /*web.loadDataWithBaseURL(URI_PREFIX,
                     html,
@@ -430,8 +441,8 @@ public class GridViewAdapter extends ArrayAdapter {
 
     }
     public void onTouch(View v, MotionEvent event) {
-        Toast.makeText(context, "/ touched?=" + v.getId(),
-                Toast.LENGTH_LONG).show();
+       /* Toast.makeText(context, "/ touched?=" + v.getId(),
+                Toast.LENGTH_LONG).show();*/
 
     }
 

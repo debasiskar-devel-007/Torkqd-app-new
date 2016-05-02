@@ -3,6 +3,7 @@ package com.torkqd;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
@@ -40,8 +41,7 @@ public class ImageLoader extends upload{
     }
     
     final int stub_id=R.drawable.stub;
-    public void DisplayImage(String url, ImageView imageView , int i)
-    {
+    public void DisplayImage(String url, ImageView imageView , int i) throws InterruptedException {
        /* AlertDialog alertDialog = new AlertDialog.Builder(
                 ImageLoader.this).create();
 
@@ -66,37 +66,46 @@ public class ImageLoader extends upload{
         alertDialog.show();*/
 
         //imageViews.put(imageView, url);
-        if(i==2) {
-            Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(url), 150, 150);
+        if (i == 2) {
+            Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(url), 130, 130);
             //image.setImageURI(Uri.parse(url));
-            imageView.setImageBitmap(ThumbImage);
-            /*Bitmap bitmap=memoryCache.get(url);
-            if(bitmap!=null)
-                imageView.setImageBitmap(bitmap);
-            else
-            {
+            // imageView.setImageBitmap(ThumbImage);
+            //Bitmap bitmap = memoryCache.get(url);
+            if (ThumbImage != null)
+                imageView.setImageBitmap(ThumbImage);
+            else {
+                queuePhoto(url, imageView);
+                //imageView.setImageResource(stub_id);
+                imageView.setImageBitmap(ThumbImage);
+            }
+        } else {
+            Bitmap bitmap;
+            bitmap = ThumbnailUtils.createVideoThumbnail(url,
+                    MediaStore.Video.Thumbnails.MICRO_KIND);
+
+            //bitmap.setWidth(120);
+            //bitmap.setHeight(120);
+            Thread.sleep(900);
+
+            Context context = getApplicationContext();
+
+            Resources res = context.getResources();
+            //bitmap = memoryCache.get(url);
+            if (bitmap != null) {
+                //imageView.setImageBitmap(bitmap);
+                //imageView.setImageDrawable(res.getDrawable(R.drawable.stub));
+            }/* else {
                 queuePhoto(url, imageView);
                 //imageView.setImageResource(stub_id);
                 imageView.setImageBitmap(bitmap);
-            }*/
-        }
-        else{
-            /*Bitmap bitmap;
-            bitmap = ThumbnailUtils.createVideoThumbnail(url,
-                    MediaStore.Video.Thumbnails.MICRO_KIND);
-            imageView.setImageBitmap(bitmap);*/
 
-            imageView.setImageResource(stub_id);
+                //imageView.setImageDrawable(res.getDrawable(R.drawable.stub));
+                // }
+
+                //imageView.setImageResource(stub_id);
+            }*/
+
         }
-        /*Bitmap bitmap=memoryCache.get(url);
-        if(bitmap!=null)
-            imageView.setImageBitmap(bitmap);
-        else
-        {
-            queuePhoto(url, imageView);
-            //imageView.setImageResource(stub_id);
-            imageView.setImageBitmap(bitmap);
-        }*/
     }
         
     private void queuePhoto(String url, ImageView imageView)

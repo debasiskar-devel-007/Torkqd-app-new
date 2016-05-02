@@ -24,6 +24,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -43,9 +44,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -67,6 +70,7 @@ public class upload extends Activity {
     List<String> vflLst = new ArrayList<String>();
     List<String> fnamelLst = new ArrayList<String>();
     int dircount;
+    ImageView imgv;
     String[] thumbColumns = {MediaStore.Video.Thumbnails.DATA, MediaStore.Video.Thumbnails.VIDEO_ID};
     private GridView gridView;
     private GridViewAdapter gridAdapter;
@@ -143,8 +147,8 @@ public class upload extends Activity {
                 String prompt = (String) parent.getItemAtPosition(position);
 
 
-                Toast.makeText(getApplicationContext(), "image clicked " + prompt,
-                        Toast.LENGTH_LONG).show();
+                /*Toast.makeText(getApplicationContext(), "image clicked " + prompt,
+                        Toast.LENGTH_LONG).show();*/
 
 
                 dialog = ProgressDialog.show(upload.this,
@@ -185,22 +189,30 @@ public class upload extends Activity {
                 // Pause disk cache access to ensure smoother scrolling
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
                     //imageLoader.stopProcessingQueue();
-                    Toast.makeText(getApplicationContext(), "Equal State",
-                            Toast.LENGTH_LONG).show();
+                    /*Toast.makeText(getApplicationContext(), "Equal State",
+                            Toast.LENGTH_LONG).show();*/
                 } else {
                    // imageLoader.startProcessingQueue();
-                    Toast.makeText(getApplicationContext(), "Not equal state",
-                            Toast.LENGTH_LONG).show();
+                   /* Toast.makeText(getApplicationContext(), "Not equal state",
+                            Toast.LENGTH_LONG).show();*/
                 }
             }
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getApplicationContext(), "firstVisibleItem :"+firstVisibleItem+", visibleItemCount :"+visibleItemCount+" , totalItemCount: "+totalItemCount,
-                        Toast.LENGTH_LONG).show();
+                /*Toast.makeText(getApplicationContext(), "firstVisibleItem :"+firstVisibleItem+", visibleItemCount :"+visibleItemCount+" , totalItemCount: "+totalItemCount,
+                        Toast.LENGTH_LONG).show();*/
                 for(int i = firstVisibleItem; i<visibleItemCount; i++){
-                    gridView.getChildAt(i).setVisibility(view.VISIBLE);
+
+                    View v=gridView.getChildAt(i);
+                   if(i<firstVisibleItem || i >firstVisibleItem+visibleItemCount)
+                       gridView.getChildAt(i).setVisibility(view.GONE);
+                    else {
+                      // gridView.getChildAt(i).
+
+                       gridView.getChildAt(i).setVisibility(view.VISIBLE);
+                   }
                 }
             }
         });
@@ -213,8 +225,8 @@ public class upload extends Activity {
 
 
         upload nup=new upload();
-        Toast.makeText(nup, "/ clicked?=" + url,
-                Toast.LENGTH_LONG).show();
+        /*Toast.makeText(nup, "/ clicked?=" + url,
+                Toast.LENGTH_LONG).show();*/
         //nup.startuploader(url);
 
     }
@@ -343,8 +355,8 @@ public class upload extends Activity {
 
                     if (imagePath.getName().contains(".mp4") || imagePath.getName().contains(".MP4") || imagePath.getName().contains(".Mp4")) {
                         String path = imagePath.getAbsolutePath();
-                        Toast.makeText(getApplicationContext(), path,
-                                Toast.LENGTH_LONG).show();
+                        /*Toast.makeText(getApplicationContext(), path,
+                                Toast.LENGTH_LONG).show();*/
 
                         bitmap = ThumbnailUtils.createVideoThumbnail(path,
                                 Thumbnails.FULL_SCREEN_KIND);
@@ -379,7 +391,7 @@ public class upload extends Activity {
                 int count = StringUtils.countMatches(tf.getAbsolutePath(), "/");
                /* Toast.makeText(getApplicationContext(), "/ count=" + count,
                         Toast.LENGTH_LONG).show();*/
-                if (count < (dircount + 3) && tf.getName().contains("thumbnails")) populatefilelist(tf.getAbsolutePath());
+                if (count < (dircount + 4) ) populatefilelist(tf.getAbsolutePath());
             } else filetype = "file";
         /*Toast.makeText(getApplicationContext(),"filename="+ tf.getName()+"filetype="+filetype+"getabspath="+tf.getAbsolutePath(),
                 Toast.LENGTH_LONG).show();*/
@@ -436,7 +448,7 @@ public class upload extends Activity {
 
 
                 if (!Arrays.asList(fnamelLst).contains(tf.getName())) {
-                    vflLst.add(tf.getAbsolutePath());
+                    flLst.add(tf.getAbsolutePath());
                     //filecreatdtimelist.add(tf.lastModified());
                     fnamelLst.add(tf.getName());
 
@@ -460,6 +472,15 @@ public class upload extends Activity {
 
         if (Environment.MEDIA_MOUNTED.equals(state) && file.isDirectory()) {
             File[] fileArr = file.listFiles();
+
+            Arrays.sort(fileArr, new Comparator<File>() {
+                public int compare(File f1, File f2) {
+                    return Long.compare(f1.lastModified(), f2.lastModified());
+                }
+            });
+
+
+
             int length = fileArr.length;
             for (int i = 0; i < length; i++) {
                 File f = fileArr[i];
@@ -519,9 +540,12 @@ public class upload extends Activity {
 
 
                     if (!Arrays.asList(fnamelLst).contains(f.getName())) {
-                        vflLst.add(f.getAbsolutePath());
+                        flLst.add(f.getAbsolutePath());
                         //filecreatdtimelist.add(tf.lastModified());
                         fnamelLst.add(f.getName());
+
+                       /* Toast.makeText(getApplicationContext(), "/ createdtime 1=" + f.lastModified(),
+                                Toast.LENGTH_LONG).show();*/
 
 
 
@@ -536,9 +560,17 @@ public class upload extends Activity {
             }
         }
 
-        flLst.addAll(vflLst);
+        Collections.reverse(flLst);
+        //flLst.addAll(vflLst);
 
-        //Collections.reverse(flLst);
+        /*Collections.sort(flLst);
+
+        for (String e : flLst) {
+            //doSomething(e);
+
+            ArrayList stt=e.split("-");
+
+        }*/
 
 
         return flLst;
