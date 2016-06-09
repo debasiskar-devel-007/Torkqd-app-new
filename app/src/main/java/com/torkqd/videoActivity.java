@@ -164,7 +164,12 @@ public class videoActivity extends Activity {
 
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                videoActivity.this.finish();
+
+                Context context = v.getContext();
+                Intent cameraintent = new Intent(context, upload.class);
+
+                // Launch default browser
+                context.startActivity(cameraintent);
             }
         });
 
@@ -406,6 +411,7 @@ public class videoActivity extends Activity {
             }
         } else {
 
+            cancel.performClick();
             //upLoad2Server(fileuri);
             //return;
 

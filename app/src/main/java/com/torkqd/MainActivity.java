@@ -115,7 +115,7 @@ public class MainActivity extends Activity implements LocationListener {
         Intent intent = getIntent();
         vlocalfileuril = intent.getStringExtra("vlocalfileuril");
         vlocalfileuril = vlocalfileuril.valueOf(vlocalfileuril);
-       /* Toast.makeText(getApplicationContext(), "vfile uploaded " + vlocalfileuril,
+        /*Toast.makeText(getApplicationContext(), " status " + vlocalfileuril,
                 Toast.LENGTH_LONG).show();*/
 
 

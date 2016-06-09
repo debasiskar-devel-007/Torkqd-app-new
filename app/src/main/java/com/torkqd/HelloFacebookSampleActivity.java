@@ -110,6 +110,7 @@ public class HelloFacebookSampleActivity extends FragmentActivity {
     private String profileid;
     private Button postdata;
     String accessToken;
+    private String vlocalfileuril;
     private FacebookCallback<Sharer.Result> shareCallback = new FacebookCallback<Sharer.Result>() {
         @Override
         public void onCancel() {
@@ -155,6 +156,11 @@ public class HelloFacebookSampleActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
+
+        vlocalfileuril = null;
+        Intent intent = getIntent();
+        vlocalfileuril = intent.getStringExtra("vlocalfileuril");
+        vlocalfileuril = vlocalfileuril.valueOf(vlocalfileuril);
 
         callbackManager = CallbackManager.Factory.create();
         loginbutton = (LoginButton) findViewById(R.id.login_button);
@@ -578,6 +584,7 @@ public class HelloFacebookSampleActivity extends FragmentActivity {
 
                     Context context = HelloFacebookSampleActivity.this;
                     Intent cameraintent = new Intent(context, MainActivity.class);
+                    cameraintent.putExtra("uploadtype", vlocalfileuril);
                     context.startActivity(cameraintent);
 
                     // Server response

@@ -305,6 +305,15 @@ public class cameraActivity extends Activity {
             }
         }
 
+        /*else if (resultCode == RESULT_CANCELLED) {
+            //onFinishedPickingMedia();
+        }*/
+        else {
+            cancel.performClick();
+
+            // Launch default browser
+
+        }
         if (selectedImageUri != null) {
             try {
                 // OI FILE Manager
