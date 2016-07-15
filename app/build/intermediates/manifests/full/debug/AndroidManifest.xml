@@ -47,8 +47,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="torqkd.com"
-                    android:scheme="http" />
+                    android:host="android.torqkd.app"
+                    android:scheme="myapp" />
             </intent-filter>
         </activity>
         <activity android:name="com.torkqd.cameraActivity" >

@@ -146,6 +146,18 @@ public class WebViewController extends WebViewClient {
 
 
         }
+        /*if(url.contains("user/ajs/addRoutes"))
+        {
+
+            Context context = view.getContext();
+
+            Intent cameraintent = new Intent(context, MainActivity.class);
+            cameraintent.putExtra("routeflag", "routepage");
+            context.startActivity(cameraintent);
+
+
+            return true ;
+   }*/
 
         if(url.contains("http://torqkd.com/upload"))
         {

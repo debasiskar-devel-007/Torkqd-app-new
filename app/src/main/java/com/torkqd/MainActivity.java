@@ -51,6 +51,7 @@ public class MainActivity extends Activity implements LocationListener {
     private Button btn1;
     private String deviceId;
     private String vlocalfileuril;
+    private String routeflag;
 
     private ListView mListView;
     private List<String> fileNameList;
@@ -114,7 +115,9 @@ public class MainActivity extends Activity implements LocationListener {
         vlocalfileuril = null;
         Intent intent = getIntent();
         vlocalfileuril = intent.getStringExtra("vlocalfileuril");
+        routeflag = intent.getStringExtra("routeflag");
         vlocalfileuril = vlocalfileuril.valueOf(vlocalfileuril);
+        routeflag = routeflag.valueOf(routeflag);
         /*Toast.makeText(getApplicationContext(), " status " + vlocalfileuril,
                 Toast.LENGTH_LONG).show();*/
 
@@ -204,6 +207,21 @@ public class MainActivity extends Activity implements LocationListener {
 
         if(location!=null){
             onLocationChanged(location);
+        }else{
+            location = locationManager.getLastKnownLocation
+                    (LocationManager.PASSIVE_PROVIDER);
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
+            onLocationChanged(location);
+
+            deviceId = Settings.Secure.getString(this.getContentResolver(),
+                    Settings.Secure.ANDROID_ID);
+            //Toast.makeText(this, location+"location not working", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, location+"location not working", Toast.LENGTH_SHORT).show();
+            myWebView.loadUrl("javascript:setValue("+latitude+")");
+            myWebView.loadUrl("javascript:setValuelong(" + longitude + ")");
+
+            myWebView.loadUrl("javascript:add_userdevice_with_session('" + deviceId + "')");
         }
 
        /* locationManager.requestLocationUpdates(provider,1000,0, this);
@@ -224,12 +242,15 @@ public class MainActivity extends Activity implements LocationListener {
         // launchWebview();
 		if (!isGPSEnable()) {
 			startActivityForResult(new Intent(
-  					android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS),
-					GPS_RESULTCODE);
+                            android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS),
+                    GPS_RESULTCODE);
 		} else {
 			launchWebview();
 		}
 	}
+
+
+
 
     public void sendMessage(View view) {
         Intent intent = new Intent(this, cameraActivity.class);
@@ -249,7 +270,7 @@ public class MainActivity extends Activity implements LocationListener {
 
         deviceId = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
-        // Toast.makeText(this, deviceId, Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, deviceId+"location working", Toast.LENGTH_SHORT).show();
 
         myWebView.loadUrl("javascript:setValue("+latitude+")");
         myWebView.loadUrl("javascript:setValuelong("+longitude+")");
@@ -444,6 +465,10 @@ public class MainActivity extends Activity implements LocationListener {
                     loaderImg.setVisibility(view.GONE);
                     pLoader.setVisibility(view.GONE);
                     myWebView.setVisibility(view.VISIBLE);
+                    myWebView.loadUrl("javascript:setValue(" + latitude + ")");
+                    myWebView.loadUrl("javascript:setValuelong(" + longitude + ")");
+
+                    myWebView.loadUrl("javascript:add_userdevice_with_session('" + deviceId + "')");
 
                     try {
                         if (progressDialog.isShowing()) {
@@ -461,6 +486,11 @@ public class MainActivity extends Activity implements LocationListener {
                     myWebView.setVisibility(view.GONE);
                     loaderImg.setVisibility(view.VISIBLE);
                     pLoader.setVisibility(view.VISIBLE);
+
+                    myWebView.loadUrl("javascript:setValue("+latitude+")");
+                    myWebView.loadUrl("javascript:setValuelong("+longitude+")");
+
+                    myWebView.loadUrl("javascript:add_userdevice_with_session('" + deviceId + "')");
 
 
                     if (progressDialog == null) {

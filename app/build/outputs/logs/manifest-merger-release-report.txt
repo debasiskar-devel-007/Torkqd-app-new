@@ -134,11 +134,11 @@ ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:5
 	android:name
 		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:58:27-75
 data
-ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:59:17-78
+ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:59:17-81
 	android:host
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:59:23-48
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:59:46-79
 	android:scheme
-		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:59:49-70
+		ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:59:23-45
 activity#com.torkqd.cameraActivity
 ADDED from E:\Android\projects\Torkqd-app-new\app\src\main\AndroidManifest.xml:65:9-67:20
 	android:name

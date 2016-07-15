@@ -170,6 +170,7 @@ public class HelloFacebookSampleActivity extends FragmentActivity {
                 Settings.Secure.ANDROID_ID);
         //LoginManager.getInstance();
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends", "email"));
+        LoginManager.getInstance().logInWithPublishPermissions(this, Arrays.asList("publish_actions"));
 
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
