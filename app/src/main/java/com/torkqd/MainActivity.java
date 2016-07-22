@@ -9,6 +9,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
@@ -370,6 +371,20 @@ public class MainActivity extends Activity implements LocationListener {
     private void launchWebview() {
         myWebView.setWebViewClient(new WebViewController());
         myWebView.getSettings().setJavaScriptEnabled(true);
+
+
+        myWebView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+        if (Build.VERSION.SDK_INT >= 19) {
+            // chromium, enable hardware acceleration
+            myWebView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        } else {
+            // older android version, disable hardware acceleration
+            myWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }
+
+        myWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+
+
         myWebView.getSettings().setLoadWithOverviewMode(true);
         myWebView.getSettings().setUseWideViewPort(true);
         myWebView.getSettings().setSupportMultipleWindows(true);
